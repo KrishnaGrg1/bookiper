@@ -838,20 +838,24 @@
 			</div>
 
 			<!-- Pricing Content -->
-			<div class="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+			<div
+				class="grid grid-cols-1 lg:grid-cols-[201fr_275fr] gap-[58px] max-w-[1200px] mx-auto px-4 lg:px-0"
+			>
 				<!-- Pricing Card -->
-				<div class="border-2 border-[#f4f4f4] rounded-3xl p-8 space-y-10">
+				<div
+					class="border-2 border-[#f4f4f4] rounded-3xl bg-[#0b0b0b] p-8 flex flex-col justify-between gap-2.5"
+				>
 					<div class="space-y-8">
 						<!-- Price Header -->
 						<div class="text-center space-y-6">
 							<h3
-								class="text-[#fafafa] text-2xl font-bold"
+								class="text-[#fafafa] text-2xl font-bold leading-[29px]"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 							>
-								Your accounting from
+								Your accounting form
 							</h3>
 							<div
-								class="text-[#f4f4f4] text-5xl lg:text-6xl font-bold"
+								class="text-[#f4f4f4] text-3xl lg:text-5xl font-bold leading-[58px]"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 2px;"
 							>
 								89€/month
@@ -902,13 +906,14 @@
 					<!-- CTA and Disclaimer -->
 					<div class="space-y-3">
 						<button
-							class="bg-[#edff8c] text-black w-full py-4 rounded-lg text-xl font-medium hover:bg-[#edff8c]/90 transition-colors"
+							class="bg-[#edff8c] text-black w-full py-4 rounded-lg text-xl font-medium hover:bg-[#edff8c]/90 transition-colors leading-[20px]"
+							style="font-family: DmMono-Medium, sans-serif"
 						>
 							Get your free consultation
 						</button>
 						<p
-							class="text-[#7e7e7e] text-sm text-center"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
+							class="text-[#7e7e7e] text-sm md:text-base text-center leading-[24px]"
+							style="font-family: 'DmSans-Regular', sans-serif; "
 						>
 							*Final pricing depends on your company's size and activity - fill in the form below to
 							receive your personalized offer.
@@ -917,7 +922,9 @@
 				</div>
 
 				<!-- Calculator Form -->
-				<div class="bg-[#fafafa] rounded-3xl p-8 lg:p-12 space-y-8">
+				<div
+					class="bg-[#fafafa] rounded-3xl px-[79px] py-[29px] lg:p-12 flex flex-col gap-2.5 justify-between h-full"
+				>
 					<!-- Form Header -->
 					<div class="space-y-4 text-center">
 						<h3
@@ -927,8 +934,8 @@
 							Calculate my price
 						</h3>
 						<p
-							class="text-black text-xl"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
+							class="text-black text-xl leading-[30px]"
+							style="font-family: 'DmSans-Regular', sans-serif; "
 						>
 							Tell us about your business, and we'll prepare a custom accounting plan tailored to
 							your needs.
