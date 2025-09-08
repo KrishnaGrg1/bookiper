@@ -1,11 +1,7 @@
 <script lang="ts">
 	import { CircleCheck, Facebook, Star, Menu, X } from 'lucide-svelte';
-
-	let mobileMenuOpen = false;
-
-	function toggleMobileMenu() {
-		mobileMenuOpen = !mobileMenuOpen;
-	}
+	import Button from '$lib/components/ui/button/button.svelte';
+	import { Sheet, SheetContent, SheetTrigger } from '$lib/components/ui/sheet';
 </script>
 
 <svelte:head>
@@ -19,8 +15,8 @@
 
 <!-- Navigation Header -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#111111]/90 backdrop-blur-sm">
-	<nav class="container mx-auto px-4 lg:px-8 py-4">
-		<div class="flex items-center justify-between md:px-50">
+	<nav class="container mx-auto px-4 py-4">
+		<div class="flex items-center justify-between xl:px-50">
 			<!-- Logo -->
 			<div
 				class="text-[#edff8c] text-2xl lg:text-3xl font-bold cursor-pointer"
@@ -30,7 +26,7 @@
 			</div>
 
 			<!-- Desktop Navigation -->
-			<div class="hidden lg:flex items-center space-x-8">
+			<div class="hidden xl:flex items-center space-x-8">
 				<a href="#home" class="text-[#fafafa] hover:text-[#edff8c] transition-colors">Home</a>
 				<a href="#services" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
 					>Services</a
@@ -41,73 +37,39 @@
 			</div>
 
 			<!-- Desktop CTA Button -->
-			<button
-				class="hidden lg:block bg-[#edff8c] text-black px-6 py-3 rounded-lg font-medium hover:bg-[#edff8c]/90 transition-colors"
+			<Button
+				variant="default"
+				class="hidden xl:block bg-[#edff8c] text-black font-medium text-base hover:bg-[#edff8c]/90 transition-colors"
+				>Calculate my price</Button
 			>
-				Calculate my price
-			</button>
-
 			<!-- Mobile Menu Button -->
-			<button
-				class="lg:hidden text-[#fafafa] p-2"
-				on:click={toggleMobileMenu}
-				aria-label="Toggle mobile menu"
-			>
-				{#if mobileMenuOpen}
-					<X size={24} />
-				{:else}
-					<Menu size={24} />
-				{/if}
-			</button>
+			<Sheet>
+				<SheetTrigger>
+					<button class="xl:hidden text-[#fafafa] p-2">
+						<Menu size={24} />
+					</button>
+				</SheetTrigger>
+				<SheetContent side="right" class="bg-[#111111] text-white w-80">
+					<nav class="flex flex-col gap-6 mt-10 p-4">
+						{#each ['Home', 'Services', 'About', 'Pricing', 'Contact'] as item}
+							<a
+								href={'#' + item.toLowerCase()}
+								class="block text-[#fafafa] hover:text-[#edff8c] py-2 text-lg ml-10"
+							>
+								{item}
+							</a>
+						{/each}
+						<Button
+							class="mt-4 w-full bg-[#edff8c] text-black py-3  font-medium hover:bg-[#edff8c]/90 transition-colors"
+						>
+							Calculate my price
+						</Button>
+					</nav>
+				</SheetContent>
+			</Sheet>
 		</div>
 	</nav>
 </header>
-
-<!-- Mobile Menu -->
-{#if mobileMenuOpen}
-	<div class="fixed inset-0 bg-black/50 z-40 lg:hidden" on:click={toggleMobileMenu}></div>
-	<div
-		class="fixed top-0 right-0 h-full w-80 bg-[#111111] z-50 lg:hidden transform transition-transform duration-300"
-	>
-		<div class="p-6 space-y-6">
-			<div class="flex justify-end">
-				<button class="text-[#fafafa] p-2" on:click={toggleMobileMenu}>
-					<X size={24} />
-				</button>
-			</div>
-			<nav class="space-y-4">
-				<a
-					href="#home"
-					class="block text-[#fafafa] py-3 hover:text-[#edff8c]"
-					on:click={toggleMobileMenu}>Home</a
-				>
-				<a
-					href="#services"
-					class="block text-[#fafafa] py-3 hover:text-[#edff8c]"
-					on:click={toggleMobileMenu}>Services</a
-				>
-				<a
-					href="#about"
-					class="block text-[#fafafa] py-3 hover:text-[#edff8c]"
-					on:click={toggleMobileMenu}>About</a
-				>
-				<a
-					href="#pricing"
-					class="block text-[#fafafa] py-3 hover:text-[#edff8c]"
-					on:click={toggleMobileMenu}>Pricing</a
-				>
-				<a
-					href="#contact"
-					class="block text-[#fafafa] py-3 hover:text-[#edff8c]"
-					on:click={toggleMobileMenu}>Contact</a
-				>
-			</nav>
-			<button class="w-full bg-[#edff8c] text-black py-3 rounded-lg font-medium"
-				>Calculate my price</button
-			>
-		</div>
-	</div>
-{/if}
 
 <!-- Main Content -->
 <main class="overflow-x-hidden">
@@ -849,7 +811,7 @@
 						<!-- Price Header -->
 						<div class="text-center space-y-6">
 							<h3
-								class="text-[#fafafa] text-2xl font-bold leading-[29px]"
+								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-[29px]"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 							>
 								Your accounting form
