@@ -221,7 +221,7 @@
 
 				<!-- Yellow Connecting Dots -->
 				<div
-					class="hidden md:block absolute left-1/2 top-8 w-4 h-4 bg-[#edff8c] rounded-full transform -translate-x-1/2 z-10"
+					class="hidden md:block absolute left-1/2 top-0 w-4 h-4 bg-[#edff8c] rounded-full transform -translate-x-1/2 z-10"
 				></div>
 
 				<!-- Left Column -->
