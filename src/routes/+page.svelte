@@ -18,7 +18,7 @@
 <!-- Navigation Header -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#111111]/90 backdrop-blur-sm">
 	<nav class="container mx-auto px-4 py-4">
-		<div class="flex items-center justify-between xl:px-50">
+		<div class="flex items-center justify-between xl:px-20 2xl:px-50">
 			<!-- Logo -->
 			<div
 				class="text-[#edff8c] text-2xl lg:text-3xl font-bold cursor-pointer"
