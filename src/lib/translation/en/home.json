@@ -1,0 +1,206 @@
+{
+	"brand": "BOOKIPER",
+	"menu": {
+		"home": "Home",
+		"how_we_work": "How We Work",
+		"services": "Services",
+		"about": "About",
+		"pricing": "Pricing",
+		"contact": "Contact"
+	},
+	"calculate_price": "Calculate Price",
+	"hero": {
+		"title": "Your trusted partner in finance and compliance in France",
+		"subtitle": "Expert accounting and bookkeeping services to help your business stay compliant, organized, and financially healthy — without the stress.",
+		"cta_primary": "Start your company in France",
+		"trust_text": "More than 4000 clients already trust us",
+		"rating_text": "4.9 on Google"
+	},
+	"trusted_companies": {
+		"title": "Trusted by international fast-growing companies"
+	},
+	"process": {
+		"title": "Simple steps to stress-free accounting",
+		"subtitle": "Managing your business finances doesn't have to be complicated. With Bookiper, we've made the process clear and straightforward so you can stay compliant, organized, and focused on growth.",
+		"step_1": {
+			"title": "Book a Free Consultation",
+			"description": "Tell us about your business needs, challenges, and goals. We'll identify how our services can best support you."
+		},
+		"step_2": {
+			"title": "Analysis & Recommendations",
+			"description": "Our experts review your current accounting situation and highlight the best solutions for you."
+		},
+		"step_3": {
+			"title": "Tailored Accounting Plan",
+			"description": "We design a customized service package to keep your business compliant, organized, and financially sound."
+		},
+		"step_4": {
+			"title": "Seamless Onboarding",
+			"description": "We set up the tools, processes, and communication so everything runs smoothly from day one."
+		},
+		"step_5": {
+			"title": "Ongoing Support & Insights",
+			"description": "Receive regular reports, updates, and proactive advice to stay in control and ahead of any changes."
+		},
+		"cta": "Speak with us"
+	},
+	"services": {
+		"title": "Our Services",
+		"subtitle": "Smart accounting solutions designed for your business",
+		"service_1": {
+			"title": "Bookkeeping & Compliance in Europe",
+			"description": "Accurate records, timely reports, and full compliance with local regulations - so you never worry about deadlines."
+		},
+		"service_2": {
+			"title": "Financial Reporting & Insights",
+			"description": "Clear, easy-to-understand reports and data-driven insights to guide smarter business decisions."
+		},
+		"service_3": {
+			"title": "Advisory & Ongoing Support",
+			"description": "Expert advice on tax planning, financial strategy, and day-to-day guidance for sustainable growth."
+		}
+	},
+	"why_bookiper": {
+		"title": "Why BOOKIPER?",
+		"subtitle": "Smart accounting solutions designed for your business",
+		"feature_1": {
+			"title": "Expertise You Can Trust",
+			"description": "Our certified accountants bring years of experience to keep your business compliant and financially secure."
+		},
+		"feature_2": {
+			"title": "Tailored Solutions",
+			"description": "We don't believe in one-size-fits-all. Every service is customized to meet your unique business needs."
+		},
+		"feature_3": {
+			"title": "Stress-Free Process",
+			"description": "From setup to ongoing support, we make accounting simple so you can focus on running your business."
+		},
+		"feature_4": {
+			"title": "Proactive Insights",
+			"description": "Beyond bookkeeping - we provide actionable advice and foresight to help your business grow."
+		},
+		"cta": "Get your free consultation"
+	},
+	"team": {
+		"title": "Meet the team",
+		"subtitle": "At Bookiper, our strength lies in the expertise and dedication of our team. Each member brings unique skills to ensure your business stays financially healthy, compliant, and ready for growth.",
+		"member_1": {
+			"name": "Olena Kovalchuk",
+			"position": "Senior Accountant",
+			"description": "Focused on accuracy and compliance, Olena ensures your records are always in perfect order."
+		},
+		"member_2": {
+			"name": "Andriy Melnyk",
+			"position": "Financial Analyst",
+			"description": "Andriy translates complex numbers into clear insights that support smarter business decisions."
+		},
+		"member_3": {
+			"name": "Iryna Shevchenko",
+			"position": "Client Success Manager",
+			"description": "Iryna makes sure every client feels supported, informed, and stress-free at every step."
+		}
+	},
+	"testimonials": {
+		"title": "See why our clients love Bookiper",
+		"subtitle": "Our clients choose Bookiper for reliable support, clear insights, and stress-free accounting that helps their business grow.",
+		"testimonial_1": {
+			"text": "Bookiper has completely taken the stress out of managing our accounts. Their attention to detail and proactive support let me focus on growing my business instead of worrying about numbers.",
+			"author": "Michael Turner",
+			"company": "Founder of Turner Consulting"
+		},
+		"testimonial_2": {
+			"text": "The team at Bookiper is professional, reliable, and always available to answer my questions. Their financial reports are clear and give me the confidence I need to make big decisions.",
+			"author": "Frances Swann",
+			"company": "CEO of GreenLeaf Marketing"
+		},
+		"testimonial_3": {
+			"text": "Working with Bookiper feels like having an in-house finance department. They truly understand our business and provide insights that go beyond basic accounting.",
+			"author": "Mary Freund",
+			"company": "Operations Manager at TechNova"
+		}
+	},
+	"pricing": {
+		"title": "Clear, flexible, and tailored to your business",
+		"subtitle": "Managing your accounting doesn't have to be expensive. With Bookiper, you get reliable, stress-free financial support.",
+		"plan_title": "Your accounting form",
+		"plan_price": "89€/month",
+		"features": {
+			"bookkeeping": "Professional bookkeeping & compliance",
+			"reports": "Monthly financial reports & insights",
+			"support": "Dedicated expert support",
+			"onboarding": "Stress-free setup & onboarding"
+		},
+		"cta": "Get your free consultation",
+		"disclaimer": "*Final pricing depends on your company's size and activity - fill in the form below to receive your personalized offer.",
+		"calculator": {
+			"title": "Calculate my price",
+			"subtitle": "Tell us about your business, and we'll prepare a custom accounting plan tailored to your needs.",
+			"company_name": {
+				"placeholder": "Company Name",
+				"help": "Enter your registered business name as it appears in official documents."
+			},
+			"associates": {
+				"placeholder": "Number of Associates",
+				"help": "Provide the total number of people working in your company, including employees and partners."
+			},
+			"turnover": {
+				"placeholder": "Yearly Turnover",
+				"help": "Indicate your company's approximate annual revenue before expenses."
+			},
+			"submit": "Get my quote"
+		}
+	},
+	"faq": {
+		"title": "Answers to the most common questions about our services",
+		"subtitle": "We know choosing an accounting partner is an important decision. Here are some quick answers to help you understand how Bookiper can support your business.",
+		"questions": {
+			"cost": "How much does your service cost?",
+			"industries": "Do you only work with certain industries?",
+			"tax_compliance": "Can you handle tax compliance as well?",
+			"scalability": "What if my company grows — can the plan be adjusted?",
+			"getting_started": "How do I get started?"
+		}
+	},
+	"contact": {
+		"title": "Let's talk about your business needs",
+		"subtitle": "Have questions about accounting, compliance, or financial management? Fill out the form and our experts will get in touch to provide clear answers and a tailored plan for your business.",
+		"form": {
+			"title": "Get your free consultation",
+			"subtitle": "In just 30 minutes, you'll gain clarity on your accounting needs, discover how Bookiper can support your business, and receive practical next steps — all free of charge.",
+			"full_name": {
+				"placeholder": "Full Name*",
+				"help": "Please enter your first and last name as you'd like us to address you."
+			},
+			"email": {
+				"placeholder": "Email Address*",
+				"help": "We'll use this to send you confirmation and follow-up details."
+			},
+			"phone": {
+				"placeholder": "Phone Number",
+				"help": "Optional, but it helps us reach you faster if needed."
+			},
+			"message": {
+				"placeholder": "Message",
+				"help": "Share any specific concerns, questions, or details about your accounting needs."
+			},
+			"submit": "Send"
+		},
+		"phone": "Phone",
+		"email": "Email",
+		"address": "Address"
+	},
+	"footer": {
+		"description": "We provide reliable, stress-free accounting services designed to save you time and give you peace of mind. Explore our resources or get in touch with our team today.",
+		"menu_title": "Menu",
+		"contact_title": "Contact",
+		"resources_title": "Resources",
+		"copyright": "© 2025 Bookiper",
+		"privacy_policy": "Privacy Policy",
+		"terms_of_service": "Terms of Service"
+	},
+	"resources": {
+		"testimonials": "Testimonials",
+		"faq": "FAQ",
+		"free_consultation": "Free Consultation"
+	}
+}

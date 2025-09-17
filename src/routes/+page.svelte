@@ -2,6 +2,8 @@
 	import { CircleCheck, Facebook, Star, Menu, X } from 'lucide-svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { Sheet, SheetContent, SheetTrigger } from '$lib/components/ui/sheet';
+	import { t } from '$lib/translation';
+	import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
 </script>
 
 <svelte:head>
@@ -22,51 +24,66 @@
 				class="text-[#edff8c] text-2xl lg:text-3xl font-bold cursor-pointer"
 				style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1px;"
 			>
-				BOOKIPER
+				{$t('home.brand')}
 			</div>
 
 			<!-- Desktop Navigation -->
 			<div class="hidden xl:flex items-center space-x-8">
-				<a href="#home" class="text-[#fafafa] hover:text-[#edff8c] transition-colors">Home</a>
-				<a href="#services" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
-					>Services</a
+				<a href="#home" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+					>{$t('home.menu.home')}</a
 				>
-				<a href="#about" class="text-[#fafafa] hover:text-[#edff8c] transition-colors">About</a>
-				<a href="#pricing" class="text-[#fafafa] hover:text-[#edff8c] transition-colors">Pricing</a>
-				<a href="#contact" class="text-[#fafafa] hover:text-[#edff8c] transition-colors">Contact</a>
+				<a href="#services" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+					>{$t('home.menu.services')}</a
+				>
+				<a href="#about" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+					>{$t('home.menu.about')}</a
+				>
+				<a href="#pricing" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+					>{$t('home.menu.pricing')}</a
+				>
+				<a href="#contact" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+					>{$t('home.menu.contact')}</a
+				>
 			</div>
 
-			<!-- Desktop CTA Button -->
-			<Button
-				variant="default"
-				class="hidden xl:block bg-[#edff8c] text-black font-medium text-base hover:bg-[#edff8c]/90 transition-colors"
-				>Calculate my price</Button
-			>
 			<!-- Mobile Menu Button -->
-			<Sheet>
-				<SheetTrigger>
-					<button class="xl:hidden text-[#fafafa] p-2">
-						<Menu size={24} />
-					</button>
-				</SheetTrigger>
-				<SheetContent side="right" class="bg-[#111111] text-white w-80">
-					<nav class="flex flex-col gap-6 mt-10 p-4">
-						{#each ['Home', 'Services', 'About', 'Pricing', 'Contact'] as item}
-							<a
-								href={'#' + item.toLowerCase()}
-								class="block text-[#fafafa] hover:text-[#edff8c] py-2 text-lg ml-10"
+
+			<!-- Desktop CTA Button -->
+			<div class=" xl:flex items-center space-x-4">
+				<Button
+					variant="default"
+					onclick={() => (window.location.href = '#pricing')}
+					class="hidden xl:block bg-[#edff8c] text-black font-medium text-base hover:bg-[#edff8c]/90 transition-colors"
+					>{$t('home.calculate_price')}</Button
+				>
+
+				<LanguageSwitcher />
+
+				<Sheet>
+					<SheetTrigger>
+						<button class="xl:hidden text-[#fafafa] p-2">
+							<Menu size={24} />
+						</button>
+					</SheetTrigger>
+					<SheetContent side="right" class="bg-[#111111] text-white w-80">
+						<nav class="flex flex-col gap-6 mt-10 p-4">
+							{#each ['home.menu.home', 'home.menu.how_we_work', 'home.menu.services', 'home.menu.about', 'home.menu.contact'] as item}
+								<a
+									href={'#' + item.toLowerCase()}
+									class="block text-[#fafafa] hover:text-[#edff8c] py-2 text-lg ml-10"
+								>
+									{$t(item)}
+								</a>
+							{/each}
+							<Button
+								class="mt-4 w-full bg-[#edff8c] text-black py-3  font-medium hover:bg-[#edff8c]/90 transition-colors"
 							>
-								{item}
-							</a>
-						{/each}
-						<Button
-							class="mt-4 w-full bg-[#edff8c] text-black py-3  font-medium hover:bg-[#edff8c]/90 transition-colors"
-						>
-							Calculate my price
-						</Button>
-					</nav>
-				</SheetContent>
-			</Sheet>
+								{$t('home.calculate_price')}
+							</Button>
+						</nav>
+					</SheetContent>
+				</Sheet>
+			</div>
 		</div>
 	</nav>
 </header>
@@ -94,14 +111,13 @@
 							class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#fafafa] leading-tight"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 2px;"
 						>
-							Your trusted partner in finance and compliance in France
+							{$t('home.hero.title')}
 						</h1>
 						<p
 							class="text-base md:text-lg text-[#fafafa] max-w-lg"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							Expert accounting and bookkeeping services to help your business stay compliant,
-							organized, and financially healthy — without the stress.
+							{$t('home.hero.subtitle')}
 						</p>
 					</div>
 
@@ -109,16 +125,16 @@
 						<button
 							class="bg-[#edff8c] text-black px-8 py-4 rounded-lg text-lg font-medium hover:bg-[#edff8c]/90 transition-colors w-full sm:w-auto"
 						>
-							Start your company in France
+							{$t('home.hero.cta_primary')}
 						</button>
 
 						<div
 							class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-lg"
 						>
-							<p class="text-[#e5e5e5] text-sm">More than 4000 clients already trust us</p>
+							<p class="text-[#e5e5e5] text-sm">{$t('home.hero.trust_text')}</p>
 							<div class="flex items-center gap-2">
 								<Star class="w-5 h-5 text-yellow-400 fill-current" />
-								<span class="text-[#fafafa] text-sm">4.9 on Google</span>
+								<span class="text-[#fafafa] text-sm">{$t('home.hero.rating_text')}</span>
 							</div>
 						</div>
 					</div>
@@ -141,7 +157,7 @@
 		<div class="container mx-auto px-4 lg:px-8">
 			<div class="text-center space-y-8">
 				<p class="text-[#fafafa] text-sm md:text-base">
-					Trusted by international fast-growing companies
+					{$t('home.trusted_companies.title')}
 				</p>
 				<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
 					{#each Array(6) as _, i}
@@ -161,15 +177,13 @@
 					class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#fafafa] mb-6"
 					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 				>
-					Simple steps to stress-free accounting
+					{$t('home.process.title')}
 				</h2>
 				<p
 					class="text-lg md:text-xl text-[#fafafa]"
 					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 				>
-					Managing your business finances doesn't have to be complicated. With Bookiper, we've made
-					the process clear and straightforward so you can stay compliant, organized, and focused on
-					growth.
+					{$t('home.process.subtitle')}
 				</p>
 			</div>
 
@@ -194,92 +208,87 @@
 							class="text-[#edff8c] text-xl md:text-2xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 						>
-							Book a Free Consultation
+							{$t('home.process.step_1.title')}
 						</h3>
 						<p
 							class="text-[#fafafa] text-lg"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							Tell us about your business needs, challenges, and goals. We'll identify how our
-							services can best support you.
+							{$t('home.process.step_1.description')}
 						</p>
 					</div>
 
-					<!-- Step 2 -->
+					<!-- Step 3 -->
 					<div class="space-y-4">
 						<h3
 							class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 						>
-							Tailored Accounting Plan
+							{$t('home.process.step_3.title')}
 						</h3>
 						<p
 							class="text-[#7e7e7e] text-lg"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							We design a customized service package to keep your business compliant, organized, and
-							financially sound.
+							{$t('home.process.step_3.description')}
 						</p>
 					</div>
 
-					<!-- Step 3 -->
+					<!-- Step 5 -->
 					<div class="space-y-6">
 						<div class="space-y-4">
 							<h3
 								class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 							>
-								Ongoing Support & Insights
+								{$t('home.process.step_5.title')}
 							</h3>
 							<p
 								class="text-[#7e7e7e] text-lg"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							>
-								Receive regular reports, updates, and proactive advice to stay in control and ahead
-								of any changes.
+								{$t('home.process.step_5.description')}
 							</p>
 						</div>
 						<button
 							class="bg-[#edff8c] text-black px-6 py-3 rounded-lg font-medium hover:bg-[#edff8c]/90 transition-colors w-full sm:w-auto"
 						>
-							Speak with us
+							{$t('home.process.cta')}
 						</button>
 					</div>
 				</div>
 
 				<!-- Right Column -->
 				<div class="space-y-90 lg:pt-32">
-					<!-- Step 4 -->
+					<!-- Step 2 -->
 					<div class="space-y-4 md:mt-20">
 						<h3
 							class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 						>
-							Analysis & Recommendations
+							{$t('home.process.step_2.title')}
 						</h3>
 						<p
 							class="text-[#7e7e7e] text-lg"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							Our experts review your current accounting situation and highlight the best solutions
-							for you.
+							{$t('home.process.step_2.description')}
 						</p>
 					</div>
 
-					<!-- Step 5 -->
+					<!-- Step 4 -->
 					<div class="space-y-4">
 						<h3
 							class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 						>
-							Seamless Onboarding
+							{$t('home.process.step_4.title')}
 						</h3>
 						<p
 							class="text-[#7e7e7e] text-lg"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							We set up the tools, processes, and communication so everything runs smoothly from day
-							one.
+							{$t('home.process.step_4.description')}
 						</p>
 					</div>
 				</div>
@@ -296,13 +305,13 @@
 					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
 					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 				>
-					Our Services
+					{$t('home.services.title')}
 				</h2>
 				<p
 					class="text-lg md:text-xl text-black"
 					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 				>
-					Smart accounting solutions designed for your business
+					{$t('home.services.subtitle')}
 				</p>
 			</div>
 
@@ -320,14 +329,13 @@
 								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-tight"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: -0.011em;"
 							>
-								Bookkeeping & Compliance in Europe
+								{$t('home.services.service_1.title')}
 							</h3>
 							<p
 								class="text-[#fafafa] text-base leading-relaxed"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 0.02em;"
 							>
-								Accurate records, timely reports, and full compliance with local regulations - so
-								you never worry about deadlines.
+								{$t('home.services.service_1.description')}
 							</p>
 						</div>
 					</div>
@@ -345,14 +353,13 @@
 								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-tight"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: -0.011em;"
 							>
-								Financial Reporting & Insights
+								{$t('home.services.service_2.title')}
 							</h3>
 							<p
 								class="text-[#fafafa] text-base leading-relaxed"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 0.02em;"
 							>
-								Clear, easy-to-understand reports and data-driven insights to guide smarter business
-								decisions.
+								{$t('home.services.service_2.description')}
 							</p>
 						</div>
 					</div>
@@ -370,14 +377,13 @@
 								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-tight"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: -0.011em;"
 							>
-								Advisory & Ongoing Support
+								{$t('home.services.service_3.title')}
 							</h3>
 							<p
 								class="text-[#fafafa] text-base leading-relaxed"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 0.02em;"
 							>
-								Expert advice on tax planning, financial strategy, and day-to-day guidance for
-								sustainable growth.
+								{$t('home.services.service_3.description')}
 							</p>
 						</div>
 					</div>
@@ -398,13 +404,13 @@
 							class="text-3xl md:text-4xl lg:text-5xl font-bold text-black"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 						>
-							Why BOOKIPER?
+							{$t('home.why_bookiper.title')}
 						</h2>
 						<p
 							class="text-lg md:text-xl text-black"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							Smart accounting solutions designed for your business
+							{$t('home.why_bookiper.subtitle')}
 						</p>
 					</div>
 
@@ -423,14 +429,13 @@
 									class="text-black text-xl font-bold"
 									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
 								>
-									Expertise You Can Trust
+									{$t('home.why_bookiper.feature_1.title')}
 								</h3>
 								<p
 									class="text-black text-base"
 									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
 								>
-									Our certified accountants bring years of experience to keep your business
-									compliant and financially secure.
+									{$t('home.why_bookiper.feature_1.description')}
 								</p>
 							</div>
 						</div>
@@ -448,14 +453,13 @@
 									class="text-black text-xl font-bold"
 									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
 								>
-									Tailored Solutions
+									{$t('home.why_bookiper.feature_2.title')}
 								</h3>
 								<p
 									class="text-black text-base"
 									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
 								>
-									We don't believe in one-size-fits-all. Every service is customized to meet your
-									unique business needs.
+									{$t('home.why_bookiper.feature_2.description')}
 								</p>
 							</div>
 						</div>
@@ -473,14 +477,13 @@
 									class="text-black text-xl font-bold"
 									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
 								>
-									Stress-Free Process
+									{$t('home.why_bookiper.feature_3.title')}
 								</h3>
 								<p
 									class="text-black text-base"
 									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
 								>
-									From setup to ongoing support, we make accounting simple so you can focus on
-									running your business.
+									{$t('home.why_bookiper.feature_3.description')}
 								</p>
 							</div>
 						</div>
@@ -498,14 +501,13 @@
 									class="text-black text-xl font-bold"
 									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
 								>
-									Proactive Insights
+									{$t('home.why_bookiper.feature_4.title')}
 								</h3>
 								<p
 									class="text-black text-base"
 									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
 								>
-									Beyond bookkeeping - we provide actionable advice and foresight to help your
-									business grow.
+									{$t('home.why_bookiper.feature_4.description')}
 								</p>
 							</div>
 						</div>
@@ -515,7 +517,7 @@
 					<button
 						class="bg-black text-[#fafafa] px-8 py-4 rounded-lg text-xl font-medium hover:bg-gray-800 transition-colors w-full sm:w-auto"
 					>
-						Get your free consultation
+						{$t('home.why_bookiper.cta')}
 					</button>
 				</div>
 
@@ -540,15 +542,13 @@
 					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
 					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 				>
-					Meet the team
+					{$t('home.team.title')}
 				</h2>
 				<p
 					class="text-lg md:text-xl text-black"
 					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 				>
-					At Bookiper, our strength lies in the expertise and dedication of our team. Each member
-					brings unique skills to ensure your business stays financially healthy, compliant, and
-					ready for growth.
+					{$t('home.team.subtitle')}
 				</p>
 			</div>
 
@@ -572,14 +572,13 @@
 							class="text-[#7e7e7e] text-base"
 							style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
 						>
-							Senior Accountant
+							{$t('home.team.member_1.position')}
 						</p>
 						<p
 							class="text-black text-base"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							Focused on accuracy and compliance, Olena ensures your records are always in perfect
-							order.
+							{$t('home.team.member_1.description')}
 						</p>
 					</div>
 				</div>
@@ -602,14 +601,13 @@
 							class="text-[#7e7e7e] text-base"
 							style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
 						>
-							Financial Analyst
+							{$t('home.team.member_2.position')}
 						</p>
 						<p
 							class="text-black text-base"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							Andriy translates complex numbers into clear insights that support smarter business
-							decisions.
+							{$t('home.team.member_2.description')}
 						</p>
 					</div>
 				</div>
@@ -634,14 +632,13 @@
 							class="text-[#7e7e7e] text-base"
 							style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
 						>
-							Client Success Manager
+							{$t('home.team.member_3.position')}
 						</p>
 						<p
 							class="text-black text-base"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							Iryna makes sure every client feels supported, informed, and stress-free at every
-							step.
+							{$t('home.team.member_3.description')}
 						</p>
 					</div>
 				</div>
@@ -658,14 +655,13 @@
 					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
 					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 				>
-					See why our clients love Bookiper
+					{$t('home.testimonials.title')}
 				</h2>
 				<p
 					class="text-lg md:text-xl text-black"
 					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 				>
-					Our clients choose Bookiper for reliable support, clear insights, and stress-free
-					accounting that helps their business grow.
+					{$t('home.testimonials.subtitle')}
 				</p>
 			</div>
 
@@ -679,9 +675,7 @@
 							class="text-[#aaaaaa] text-lg leading-relaxed"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 						>
-							Bookiper has completely taken the stress out of managing our accounts. Their attention
-							to detail and proactive support let me focus on growing my business instead of
-							worrying about numbers.
+							{$t('home.testimonials.testimonial_1.text')}
 						</p>
 						<div class="flex items-center gap-4">
 							<img
@@ -694,13 +688,13 @@
 									class="text-[#5a5a5a] text-lg font-bold"
 									style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 								>
-									Michael Turner
+									{$t('home.testimonials.testimonial_1.author')}
 								</h4>
 								<p
 									class="text-[#5a5a5a] text-sm"
 									style="font-family: 'DmSans-Regular', sans-serif;"
 								>
-									Founder of Turner Consulting
+									{$t('home.testimonials.testimonial_1.position')}
 								</p>
 							</div>
 						</div>
@@ -712,9 +706,7 @@
 							class="text-black text-lg leading-relaxed"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 						>
-							The team at Bookiper is professional, reliable, and always available to answer my
-							questions. Their financial reports are clear and give me the confidence I need to make
-							big decisions.
+							{$t('home.testimonials.testimonial_2.text')}
 						</p>
 						<div class="flex items-center gap-4">
 							<img
@@ -727,10 +719,10 @@
 									class="text-black text-lg font-bold"
 									style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 								>
-									Frances Swann
+									{$t('home.testimonials.testimonial_2.author')}
 								</h4>
 								<p class="text-black text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-									CEO of GreenLeaf Marketing
+									{$t('home.testimonials.testimonial_2.position')}
 								</p>
 							</div>
 						</div>
@@ -742,8 +734,7 @@
 							class="text-[#aaaaaa] text-lg leading-relaxed"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 						>
-							Working with Bookiper feels like having an in-house finance department. They truly
-							understand our business and provide insights that go beyond basic accounting.
+							{$t('home.testimonials.testimonial_3.text')}
 						</p>
 						<div class="flex items-center gap-4">
 							<img
@@ -756,13 +747,13 @@
 									class="text-[#5a5a5a] text-lg font-bold"
 									style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 								>
-									Mary Freund
+									{$t('home.testimonials.testimonial_3.author')}
 								</h4>
 								<p
 									class="text-[#5a5a5a] text-sm"
 									style="font-family: 'DmSans-Regular', sans-serif;"
 								>
-									Operations Manager at TechNova
+									{$t('home.testimonials.testimonial_3.position')}
 								</p>
 							</div>
 						</div>
@@ -788,14 +779,13 @@
 					class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#fafafa] mb-6"
 					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 				>
-					Clear, flexible, and tailored to your business
+					{$t('home.pricing.title')}
 				</h2>
 				<p
 					class="text-lg md:text-xl text-[#fafafa]"
 					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 				>
-					Managing your accounting doesn't have to be expensive. With Bookiper, you get reliable,
-					stress-free financial support.
+					{$t('home.pricing.subtitle')}
 				</p>
 			</div>
 
@@ -814,13 +804,13 @@
 								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-[29px]"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 							>
-								Your accounting form
+								{$t('home.pricing.plan_title')}
 							</h3>
 							<div
 								class="text-[#f4f4f4] text-3xl lg:text-5xl font-bold leading-[58px]"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 2px;"
 							>
-								89€/month
+								{$t('home.pricing.plan_price')}
 							</div>
 						</div>
 
@@ -832,7 +822,7 @@
 									class="text-[#f4f4f4] text-lg"
 									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 								>
-									Professional bookkeeping & compliance
+									{$t('home.pricing.features.bookkeeping')}
 								</p>
 							</div>
 							<div class="flex items-start gap-4">
@@ -841,7 +831,7 @@
 									class="text-[#f4f4f4] text-lg"
 									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 								>
-									Monthly financial reports & insights
+									{$t('home.pricing.features.reports')}
 								</p>
 							</div>
 							<div class="flex items-start gap-4">
@@ -850,7 +840,7 @@
 									class="text-[#f4f4f4] text-lg"
 									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 								>
-									Dedicated expert support
+									{$t('home.pricing.features.support')}
 								</p>
 							</div>
 							<div class="flex items-start gap-4">
@@ -859,7 +849,7 @@
 									class="text-[#f4f4f4] text-lg"
 									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 								>
-									Stress-free setup & onboarding
+									{$t('home.pricing.features.onboarding')}
 								</p>
 							</div>
 						</div>
@@ -871,14 +861,13 @@
 							class="bg-[#edff8c] text-black w-full py-4 rounded-lg text-xl font-medium hover:bg-[#edff8c]/90 transition-colors leading-[20px]"
 							style="font-family: DmMono-Medium, sans-serif"
 						>
-							Get your free consultation
+							{$t('home.pricing.cta')}
 						</button>
 						<p
 							class="text-[#7e7e7e] text-sm md:text-base text-center leading-[24px]"
 							style="font-family: 'DmSans-Regular', sans-serif; "
 						>
-							*Final pricing depends on your company's size and activity - fill in the form below to
-							receive your personalized offer.
+							{$t('home.pricing.disclaimer')}
 						</p>
 					</div>
 				</div>
@@ -893,14 +882,13 @@
 							class="text-black text-3xl lg:text-4xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 						>
-							Calculate my price
+							{$t('home.pricing.calculator.title')}
 						</h3>
 						<p
 							class="text-black text-xl leading-[30px]"
 							style="font-family: 'DmSans-Regular', sans-serif; "
 						>
-							Tell us about your business, and we'll prepare a custom accounting plan tailored to
-							your needs.
+							{$t('home.pricing.calculator.subtitle')}
 						</p>
 					</div>
 
@@ -910,12 +898,12 @@
 						<div class="space-y-2">
 							<input
 								type="text"
-								placeholder="Company Name"
+								placeholder={$t('home.pricing.calculator.company_name.placeholder')}
 								class="w-full rounded-lg border border-black px-4 py-4 text-[#5a5a5a] text-base placeholder-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-black"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							/>
 							<p class="text-[#5a5a5a] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								Enter your registered business name as it appears in official documents.
+								{$t('home.pricing.calculator.company_name.help')}
 							</p>
 						</div>
 
@@ -923,13 +911,12 @@
 						<div class="space-y-2">
 							<input
 								type="text"
-								placeholder="Number of Associates"
+								placeholder={$t('home.pricing.calculator.associates.placeholder')}
 								class="w-full rounded-lg border border-black px-4 py-4 text-[#5a5a5a] text-base placeholder-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-black"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							/>
 							<p class="text-[#5a5a5a] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								Provide the total number of people working in your company, including employees and
-								partners.
+								{$t('home.pricing.calculator.associates.help')}
 							</p>
 						</div>
 
@@ -937,12 +924,12 @@
 						<div class="space-y-2">
 							<input
 								type="text"
-								placeholder="Yearly Turnover"
+								placeholder={$t('home.pricing.calculator.turnover.placeholder')}
 								class="w-full rounded-lg border border-black px-4 py-4 text-[#5a5a5a] text-base placeholder-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-black"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							/>
 							<p class="text-[#5a5a5a] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								Indicate your company's approximate annual revenue before expenses.
+								{$t('home.pricing.calculator.turnover.help')}
 							</p>
 						</div>
 
@@ -952,7 +939,7 @@
 							class="bg-black text-[#fafafa] w-full py-4 rounded-lg text-xl font-medium hover:bg-gray-800 transition-colors"
 							style="font-family: 'DmMono-Medium', sans-serif;"
 						>
-							Get my quote
+							{$t('home.pricing.calculator.submit')}
 						</button>
 					</form>
 				</div>
@@ -969,27 +956,26 @@
 					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
 					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 				>
-					Answers to the most common questions about our services
+					{$t('home.faq.title')}
 				</h2>
 				<p
 					class="text-lg md:text-xl text-black"
 					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 				>
-					We know choosing an accounting partner is an important decision. Here are some quick
-					answers to help you understand how Bookiper can support your business.
+					{$t('home.faq.subtitle')}
 				</p>
 			</div>
 
 			<!-- FAQ List -->
 			<div class="max-w-4xl mx-auto space-y-4">
-				{#each ['How much does your service cost?', 'Do you only work with certain industries?', 'Can you handle tax compliance as well?', 'What if my company grows — can the plan be adjusted?', 'How do I get started?'] as question}
+				{#each ['home.faq.questions.cost', 'home.faq.questions.industries', 'home.faq.questions.tax_compliance', 'home.faq.questions.scalability', 'home.faq.questions.getting_started'] as question}
 					<div class="border border-[#7e7e7e] rounded-3xl p-6">
 						<div class="flex items-center justify-between">
 							<h3
 								class="text-black text-xl font-bold"
 								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 							>
-								{question}
+								{$t(question)}
 							</h3>
 							<img src="/images/ep-arrow-up0.png" alt="Toggle" class="w-6 h-6" />
 						</div>
@@ -1009,15 +995,13 @@
 						class="text-3xl md:text-4xl lg:text-5xl font-bold text-black"
 						style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
 					>
-						Let's talk about your business needs
+						{$t('home.contact.title')}
 					</h2>
 					<p
 						class="text-lg md:text-xl text-black"
 						style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 					>
-						Have questions about accounting, compliance, or financial management? Fill out the form
-						and our experts will get in touch to provide clear answers and a tailored plan for your
-						business.
+						{$t('home.contact.subtitle')}
 					</p>
 				</div>
 
@@ -1029,15 +1013,13 @@
 							class="text-[#fafafa] text-2xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 						>
-							Get your free consultation
+							{$t('home.contact.form.title')}
 						</h3>
 						<p
 							class="text-[#fafafa] text-base"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							In just 30 minutes, you'll gain clarity on your accounting needs, discover how
-							Bookiper can support your business, and receive practical next steps — all free of
-							charge.
+							{$t('home.contact.form.subtitle')}
 						</p>
 					</div>
 
@@ -1047,13 +1029,13 @@
 						<div class="space-y-2">
 							<input
 								type="text"
-								placeholder="Full Name*"
+								placeholder={$t('home.contact.form.full_name.placeholder')}
 								required
 								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							/>
 							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								Please enter your first and last name as you'd like us to address you.
+								{$t('home.contact.form.full_name.help')}
 							</p>
 						</div>
 
@@ -1061,13 +1043,13 @@
 						<div class="space-y-2">
 							<input
 								type="email"
-								placeholder="Email Address*"
+								placeholder={$t('home.contact.form.email.placeholder')}
 								required
 								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							/>
 							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								We'll use this to send you confirmation and follow-up details.
+								{$t('home.contact.form.email.help')}
 							</p>
 						</div>
 
@@ -1075,25 +1057,25 @@
 						<div class="space-y-2">
 							<input
 								type="tel"
-								placeholder="Phone Number"
+								placeholder={$t('home.contact.form.phone.placeholder')}
 								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							/>
 							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								Optional, but it helps us reach you faster if needed.
+								{$t('home.contact.form.phone.help')}
 							</p>
 						</div>
 
 						<!-- Message -->
 						<div class="space-y-2">
 							<textarea
-								placeholder="Message"
+								placeholder={$t('home.contact.form.message.placeholder')}
 								rows="4"
 								class="w-full resize-none rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
 								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 							></textarea>
 							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								Share any specific concerns, questions, or details about your accounting needs.
+								{$t('home.contact.form.message.help')}
 							</p>
 						</div>
 
@@ -1103,7 +1085,7 @@
 							class="bg-[#edff8c] text-black w-full py-4 rounded-lg text-xl font-medium hover:bg-[#edff8c]/90 transition-colors"
 							style="font-family: 'DmMono-Medium', sans-serif;"
 						>
-							Send
+							{$t('home.contact.form.submit')}
 						</button>
 					</form>
 				</div>
@@ -1131,8 +1113,7 @@
 							class="text-[#fafafa] text-lg max-w-lg"
 							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
 						>
-							We provide reliable, stress-free accounting services designed to save you time and
-							give you peace of mind. Explore our resources or get in touch with our team today.
+							{$t('home.footer.description')}
 						</p>
 					</div>
 					<!-- Social Media -->
@@ -1161,22 +1142,24 @@
 							class="text-[#fafafa] text-xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 						>
-							Menu
+							{$t('home.footer.menu_title')}
 						</h4>
 						<nav class="space-y-4">
 							<a href="#home" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-								>Home</a
+								>{$t('home.menu.home')}</a
 							>
 							<a
 								href="#how-we-work"
-								class="block text-[#fafafa] hover:text-[#edff8c] transition-colors">How we work</a
+								class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
+								>{$t('home.menu.how_we_work')}</a
 							>
 							<a
 								href="#services"
-								class="block text-[#fafafa] hover:text-[#edff8c] transition-colors">Services</a
+								class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
+								>{$t('home.menu.services')}</a
 							>
 							<a href="#about" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-								>Why Bookiper?</a
+								>{$t('home.menu.about')}</a
 							>
 						</nav>
 					</div>
@@ -1187,19 +1170,19 @@
 							class="text-[#fafafa] text-xl font-bold"
 							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 						>
-							Contact
+							{$t('home.footer.contact_title')}
 						</h4>
 						<div class="space-y-4 text-[#fafafa]">
 							<div class="flex gap-4">
-								<span class="font-medium min-w-[60px]">Phone:</span>
+								<span class="font-medium min-w-[60px]">{$t('home.contact.phone')}:</span>
 								<span>+12 123 345 67</span>
 							</div>
 							<div class="flex gap-4">
-								<span class="font-medium min-w-[60px]">Email:</span>
+								<span class="font-medium min-w-[60px]">{$t('home.contact.email')}:</span>
 								<span>bookiper@gmail.com</span>
 							</div>
 							<div class="flex gap-4">
-								<span class="font-medium min-w-[70px]">Address:</span>
+								<span class="font-medium min-w-[70px]">{$t('home.contact.address')}:</span>
 								<span>Lisa Simpson, 742 Evergreens</span>
 							</div>
 						</div>
@@ -1212,21 +1195,22 @@
 						class="text-[#fafafa] text-xl font-bold"
 						style="font-family: 'SatoshiVariable-Bold', sans-serif;"
 					>
-						Resources
+						{$t('home.footer.resources_title')}
 					</h4>
 					<nav class="space-y-4">
 						<a
 							href="#testimonials"
-							class="block text-[#fafafa] hover:text-[#edff8c] transition-colors">Testimonials</a
+							class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
+							>{$t('home.resources.testimonials')}</a
 						>
 						<a href="#pricing" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-							>Pricing</a
+							>{$t('home.menu.pricing')}</a
 						>
 						<a href="#faq" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-							>FAQ</a
+							>{$t('home.resources.faq')}</a
 						>
 						<a href="#contact" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-							>Free consultation</a
+							>{$t('home.resources.free_consultation')}</a
 						>
 					</nav>
 				</div>
@@ -1240,7 +1224,7 @@
 					class="text-[#fafafa] text-center sm:text-left"
 					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 				>
-					© 2025 Bookiper
+					{$t('home.footer.copyright')}
 				</p>
 				<div class="flex flex-col items-start sm:flex-row gap-4 sm:gap-8 text-center sm:text-left">
 					<a
@@ -1248,21 +1232,21 @@
 						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors"
 						style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 					>
-						Privacy Policy
+						{$t('home.footer.privacy_policy')}
 					</a>
 					<a
 						href="#terms"
 						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors"
 						style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
 					>
-						Terms of Service
+						{$t('home.footer.terms_of_service')}
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </footer>
-
+<!-- 
 <style>
 	/* Smooth scrolling */
 	:global(html) {
@@ -1283,4 +1267,4 @@
 		transform: translateX(0);
 		transition: transform 300ms ease-in-out;
 	}
-</style>
+</style> -->
