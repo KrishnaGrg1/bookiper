@@ -960,7 +960,7 @@ transition-all duration-500 ease-out"
 					</a>
 					<a
 						href="#terms"
-						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors font-dm-sans"
+						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors font-dm-mono"
 						style="letter-spacing: 1.5px;"
 					>
 						{$t('home.footer.terms_of_service')}
