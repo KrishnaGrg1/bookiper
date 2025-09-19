@@ -148,6 +148,13 @@
 				"help": "Indiquez le revenu annuel approximatif de votre entreprise avant dépenses."
 			},
 			"submit": "Obtenez mon devis"
+		},
+		"calculated": {
+			"title": "Calculé",
+			"price_label": "Votre tarif mensuel estimé :",
+			"note": "Ceci est une estimation initiale. Pour un devis personnalisé adapté à votre entreprise, planifiez un appel avec notre conseiller.",
+			"schedule_call": "Planifier un appel",
+			"recalculate": "Recalculer"
 		}
 	},
 	"faq": {

@@ -1,9 +1,127 @@
 <script lang="ts">
-	import { CircleCheck, Facebook, Star, Menu, X } from 'lucide-svelte';
+	import {
+		CircleCheck,
+		Facebook,
+		Star,
+		Menu,
+		File,
+		ChartNoAxesColumn,
+		Handshake,
+		ArrowRight
+	} from 'lucide-svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { Sheet, SheetContent, SheetTrigger } from '$lib/components/ui/sheet';
 	import { t } from '$lib/translation';
 	import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
+	import { onMount } from 'svelte';
+	import TestimonialsCarousel from '$lib/components/TestimonialsCarousel.svelte';
+	import TrustedBy from '$lib/components/TrustedBy.svelte';
+	import FAQ from '$lib/components/FAQ.svelte';
+	import ProcessStep from '$lib/components/ProcesStep.svelte';
+	import CalculatePrice from '$lib/components/CalculatePrice.svelte';
+	let lastScrollY = 0;
+	let isHeaderVisible = true;
+	let hasScrolled = false;
+
+	onMount(() => {
+		const header = document.querySelector('header');
+		const navContent = document.querySelector('#nav-content');
+		const scrollThreshold = 8;
+		let ticking = false;
+
+		function handleScroll() {
+			const currentScrollY = window.scrollY;
+			const scrollDifference = Math.abs(currentScrollY - lastScrollY);
+
+			if (scrollDifference < scrollThreshold) return;
+
+			const scrollingDown = currentScrollY > lastScrollY;
+			const scrollingUp = currentScrollY < lastScrollY;
+
+			// Always update header background based on scroll position
+			if (currentScrollY <= 30) {
+				header.style.backgroundColor = 'rgba(17, 17, 17, 0.9)';
+				navContent.style.border = 'none';
+			} else {
+				header.style.backgroundColor = 'transparent';
+			}
+
+			// Update nav content background and blur based on scroll position
+			if (currentScrollY > 30) {
+				if (!hasScrolled) {
+					hasScrolled = true;
+					navContent.style.backgroundColor = 'rgba(17, 17, 17, 0.98)';
+					navContent.style.backdropFilter = 'blur(12px)';
+				}
+			} else {
+				if (hasScrolled) {
+					hasScrolled = false;
+					navContent.style.backgroundColor = 'rgba(17, 17, 17, 0.95)';
+					navContent.style.backdropFilter = 'blur(8px)';
+				}
+			}
+
+			// Handle hide/show logic for nav content
+			if (scrollingDown && currentScrollY > 120) {
+				if (isHeaderVisible) {
+					isHeaderVisible = false;
+					navContent.style.transform = 'translateY(-100px)';
+					navContent.style.opacity = '0';
+					navContent.style.pointerEvents = 'none';
+				}
+			} else if (scrollingUp && currentScrollY > 30) {
+				if (!isHeaderVisible) {
+					isHeaderVisible = true;
+					navContent.style.transform = 'translateY(0)';
+					navContent.style.opacity = '1';
+					navContent.style.pointerEvents = 'auto';
+					navContent.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+					navContent.style.borderRadius = '1rem';
+					navContent.style.backgroundColor = 'rgba(17, 17, 17, 0.98)';
+					navContent.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+				}
+			} else if (scrollingUp && currentScrollY <= 30) {
+				if (!isHeaderVisible) {
+					isHeaderVisible = true;
+					navContent.style.transform = 'translateY(0)';
+					navContent.style.opacity = '1';
+					navContent.style.pointerEvents = 'auto';
+					navContent.style.border = 'none';
+					navContent.style.borderRadius = '0';
+					navContent.style.backgroundColor = 'rgba(17, 17, 17, 0.95)';
+				}
+				navContent.style.boxShadow = 'none';
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function requestTick() {
+			if (!ticking) {
+				requestAnimationFrame(() => {
+					handleScroll();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		window.addEventListener('scroll', requestTick, { passive: true });
+
+		// Initialize nav content state
+		navContent.style.transform = 'translateY(0)';
+		navContent.style.opacity = '1';
+		navContent.style.backgroundColor = 'rgba(17, 17, 17, 0.95)';
+		navContent.style.backdropFilter = 'blur(8px)';
+
+		// Set initial header background
+		if (window.scrollY <= 30) {
+			header.style.backgroundColor = 'rgba(17, 17, 17, 0.9)';
+			navContent.style.border = 'none';
+		} else {
+			header.style.backgroundColor = 'transparent';
+		}
+	});
 </script>
 
 <svelte:head>
@@ -16,67 +134,82 @@
 </svelte:head>
 
 <!-- Navigation Header -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-[#111111]/90 backdrop-blur-sm">
-	<nav class="container mx-auto px-4 py-4">
-		<div class="flex items-center justify-between xl:px-20 2xl:px-50">
+<header class="fixed top-0 left-0 right-0 z-50">
+	<!-- <nav
+		class="bg-[#111111]/95 backdrop-blur-sm border border-[#333] rounded-2xl px-6 py-4 transition-all duration-300 ease-in-out"
+	> -->
+	<nav class="container mx-auto md:px-4 md:py-4 xl:px-20 2xl:px-50">
+		<div
+			id="nav-content"
+			class="flex items-center justify-between bg-[#111111]/95 backdrop-blur-sm p-2 transition-all duration-300 ease-in-out"
+		>
 			<!-- Logo -->
-			<div
-				class="text-[#edff8c] text-2xl lg:text-3xl font-bold cursor-pointer"
-				style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1px;"
-			>
+			<div class="text-[#edff8c] text-2xl lg:text-3xl font-bold cursor-pointer font-satoshi">
 				{$t('home.brand')}
 			</div>
 
 			<!-- Desktop Navigation -->
 			<div class="hidden xl:flex items-center space-x-8">
-				<a href="#home" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+				<a href="#home" class="text-[#fafafa] hover:text-[#edff8c] font-dm-sans transition-colors"
 					>{$t('home.menu.home')}</a
 				>
-				<a href="#services" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+				<a
+					href="#services"
+					class="text-[#fafafa] hover:text-[#edff8c] font-dm-sans transition-colors"
 					>{$t('home.menu.services')}</a
 				>
 				<a href="#about" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
 					>{$t('home.menu.about')}</a
 				>
-				<a href="#pricing" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+				<a
+					href="#pricing"
+					class="text-[#fafafa] hover:text-[#edff8c] font-dm-sans transition-colors"
 					>{$t('home.menu.pricing')}</a
 				>
-				<a href="#contact" class="text-[#fafafa] hover:text-[#edff8c] transition-colors"
+				<a
+					href="#contact"
+					class="text-[#fafafa] hover:text-[#edff8c] font-dm-sans transition-colors"
 					>{$t('home.menu.contact')}</a
 				>
 			</div>
-
-			<!-- Mobile Menu Button -->
 
 			<!-- Desktop CTA Button -->
 			<div class=" xl:flex items-center space-x-4">
 				<Button
 					variant="default"
 					onclick={() => (window.location.href = '#pricing')}
-					class="hidden xl:block bg-[#edff8c] text-black font-medium text-base hover:bg-[#edff8c]/90 transition-colors"
-					>{$t('home.calculate_price')}</Button
+					class="hidden xl:block bg-[#edff8c] text-black font-medium text-base  cursor-pointer
+						hover:bg-[#E9FF73]
+		active:bg-[#DFFF36]
+		disabled:bg-[#F3F6E3]
+		disabled:text-[#777777]
+		disabled:cursor-not-allowed
+		transition-colors
+		font-dm-mono
+					">{$t('home.calculate_price')}</Button
 				>
 
 				<LanguageSwitcher />
 
 				<Sheet>
 					<SheetTrigger>
-						<button class="xl:hidden text-[#fafafa] p-2">
+						<button class="xl:hidden text-[#fafafa] p-2 cursor-pointer">
 							<Menu size={24} />
 						</button>
 					</SheetTrigger>
 					<SheetContent side="right" class="bg-[#111111] text-white w-80">
 						<nav class="flex flex-col gap-6 mt-10 p-4">
-							{#each ['home.menu.home', 'home.menu.how_we_work', 'home.menu.services', 'home.menu.about', 'home.menu.contact'] as item}
+							{#each [{ id: 'home', label: 'home.menu.home' }, { id: 'services', label: 'home.menu.services' }, { id: 'about', label: 'home.menu.about' }, { id: 'pricing', label: 'home.menu.pricing' }, { id: 'contact', label: 'home.menu.contact' }] as item}
 								<a
-									href={'#' + item.toLowerCase()}
-									class="block text-[#fafafa] hover:text-[#edff8c] py-2 text-lg ml-10"
+									href={'#' + item.id}
+									class="block text-[#fafafa] hover:text-[#edff8c] py-2 text-lg font-dm-sans"
 								>
-									{$t(item)}
+									{$t(item.label)}
 								</a>
 							{/each}
 							<Button
-								class="mt-4 w-full bg-[#edff8c] text-black py-3  font-medium hover:bg-[#edff8c]/90 transition-colors"
+								onclick={() => (window.location.href = '#pricing')}
+								class="mt-4 w-full bg-[#edff8c] text-black py-3 font-medium font-dm-mono	hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3] disabled:text-[#777777] disabled:cursor-not-allowed transition-colors"
 							>
 								{$t('home.calculate_price')}
 							</Button>
@@ -91,7 +224,7 @@
 <!-- Main Content -->
 <main class="overflow-x-hidden">
 	<!-- Hero Section -->
-	<section id="home" class="relative min-h-screen bg-[#111111] flex items-center">
+	<section id="home" class="relative bg-[#111111] flex items-center sm:pt-0 pt-12">
 		<!-- Background Gradients -->
 		<div
 			class="absolute top-32 right-4 w-60 h-60 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full opacity-60"
@@ -102,39 +235,46 @@
 			style="background: linear-gradient(180deg, rgba(242, 47, 176, 1) 0%, rgba(245, 138, 37, 0) 100%, rgba(112, 97, 163, 1) 100%); filter: blur(50px);"
 		></div>
 
-		<div class="container mx-auto px-4 lg:px-8 pt-20">
-			<div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
+		<div class="container mx-auto lg:px-8 sm:pt-0 pt-10">
+			<div class="grid lg:grid-cols-[60%_40%] gap-8 lg:gap-16 items-center min-h-[80vh] mt-10">
 				<!-- Hero Content -->
 				<div class="space-y-8 z-10">
 					<div class="space-y-6">
 						<h1
-							class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#fafafa] leading-tight"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 2px;"
+							class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#fafafa] leading-tight font-satoshi tracking-wider"
 						>
 							{$t('home.hero.title')}
 						</h1>
-						<p
-							class="text-base md:text-lg text-[#fafafa] max-w-lg"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-base text-[#fafafa] max-w-lg font-dm-sans tracking-wide">
 							{$t('home.hero.subtitle')}
 						</p>
 					</div>
 
-					<div class="space-y-4">
+					<div class="space-y-4 max-w-lg">
 						<button
-							class="bg-[#edff8c] text-black px-8 py-4 rounded-lg text-lg font-medium hover:bg-[#edff8c]/90 transition-colors w-full sm:w-auto"
+							class="group bg-[#edff8c] text-black px-8 py-4 rounded-lg text-xl font-medium
+  hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3]
+  disabled:text-[#777777] disabled:cursor-not-allowed transition-colors
+  w-full cursor-pointer flex items-center justify-center gap-2 font-dm-mono"
+							aria-label={$t('home.hero.cta_primary')}
 						>
-							{$t('home.hero.cta_primary')}
+							<ArrowRight
+								class="transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+							/>
+							<span class="transition-transform duration-500 ease-out group-hover:translate-x-1">
+								{$t('home.hero.cta_primary')}
+							</span>
 						</button>
 
 						<div
 							class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-lg"
 						>
-							<p class="text-[#e5e5e5] text-sm">{$t('home.hero.trust_text')}</p>
+							<p class="text-[#e5e5e5] text-sm font-dm-sans">{$t('home.hero.trust_text')}</p>
 							<div class="flex items-center gap-2">
 								<Star class="w-5 h-5 text-yellow-400 fill-current" />
-								<span class="text-[#fafafa] text-sm">{$t('home.hero.rating_text')}</span>
+								<span class="text-[#fafafa] text-base font-dm-sans"
+									>{$t('home.hero.rating_text')}</span
+								>
 							</div>
 						</div>
 					</div>
@@ -153,188 +293,52 @@
 	</section>
 
 	<!-- Trusted Companies Section -->
-	<section class="bg-[#111111] py-16">
+	<section class="bg-[#111111] py-10">
 		<div class="container mx-auto px-4 lg:px-8">
 			<div class="text-center space-y-8">
-				<p class="text-[#fafafa] text-sm md:text-base">
+				<p class="text-[#fafafa] text-base font-dm-sans">
 					{$t('home.trusted_companies.title')}
 				</p>
-				<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
-					{#each Array(6) as _, i}
-						<div class="bg-[#aaaaaa] rounded-xl h-12 w-full"></div>
-					{/each}
-				</div>
+				<TrustedBy />
 			</div>
 		</div>
 	</section>
 
 	<!-- Process Steps Section -->
-	<section class="bg-[#111111] py-20">
-		<div class="container mx-auto px-4 lg:px-8">
-			<!-- Section Header -->
-			<div class="text-center mb-16 max-w-4xl mx-auto">
-				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#fafafa] mb-6"
-					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
-				>
-					{$t('home.process.title')}
-				</h2>
-				<p
-					class="text-lg md:text-xl text-[#fafafa]"
-					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-				>
-					{$t('home.process.subtitle')}
-				</p>
-			</div>
-
-			<!-- Process Steps Grid -->
-			<div class="relative grid md:grid-cols-2 gap-32 lg:gap-40 xl:gap-48 max-w-7xl mx-auto">
-				<!-- Vertical Connecting Line -->
-				<div
-					class="hidden md:block absolute left-1/2 top-0 transform -translate-x-1/2 z-0"
-					style="width: 2px; height: 100%; background-color: #fafafa; opacity: 0.3;"
-				></div>
-
-				<!-- Yellow Connecting Dots -->
-				<div
-					class="hidden md:block absolute left-1/2 top-0 w-4 h-4 bg-[#edff8c] rounded-full transform -translate-x-1/2 z-10"
-				></div>
-
-				<!-- Left Column -->
-				<div class="space-y-60">
-					<!-- Step 1 -->
-					<div class="space-y-4">
-						<h3
-							class="text-[#edff8c] text-xl md:text-2xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-						>
-							{$t('home.process.step_1.title')}
-						</h3>
-						<p
-							class="text-[#fafafa] text-lg"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
-							{$t('home.process.step_1.description')}
-						</p>
-					</div>
-
-					<!-- Step 3 -->
-					<div class="space-y-4">
-						<h3
-							class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-						>
-							{$t('home.process.step_3.title')}
-						</h3>
-						<p
-							class="text-[#7e7e7e] text-lg"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
-							{$t('home.process.step_3.description')}
-						</p>
-					</div>
-
-					<!-- Step 5 -->
-					<div class="space-y-6">
-						<div class="space-y-4">
-							<h3
-								class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-							>
-								{$t('home.process.step_5.title')}
-							</h3>
-							<p
-								class="text-[#7e7e7e] text-lg"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-							>
-								{$t('home.process.step_5.description')}
-							</p>
-						</div>
-						<button
-							class="bg-[#edff8c] text-black px-6 py-3 rounded-lg font-medium hover:bg-[#edff8c]/90 transition-colors w-full sm:w-auto"
-						>
-							{$t('home.process.cta')}
-						</button>
-					</div>
-				</div>
-
-				<!-- Right Column -->
-				<div class="space-y-90 lg:pt-32">
-					<!-- Step 2 -->
-					<div class="space-y-4 md:mt-20">
-						<h3
-							class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-						>
-							{$t('home.process.step_2.title')}
-						</h3>
-						<p
-							class="text-[#7e7e7e] text-lg"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
-							{$t('home.process.step_2.description')}
-						</p>
-					</div>
-
-					<!-- Step 4 -->
-					<div class="space-y-4">
-						<h3
-							class="text-[#7e7e7e] text-xl md:text-2xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-						>
-							{$t('home.process.step_4.title')}
-						</h3>
-						<p
-							class="text-[#7e7e7e] text-lg"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
-							{$t('home.process.step_4.description')}
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
+	<ProcessStep />
 	<!-- Services Section -->
 	<section id="services" class="bg-[#f4f4f4] py-20">
 		<div class="container mx-auto px-4 lg:px-8">
 			<!-- Section Header -->
 			<div class="text-center mb-16 max-w-4xl mx-auto">
-				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
-					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
-				>
+				<h2 class="text-3xl md:text-[40px] font-bold text-black mb-6 font-satoshi">
 					{$t('home.services.title')}
 				</h2>
-				<p
-					class="text-lg md:text-xl text-black"
-					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-				>
+				<p class="text-lg md:text-xl text-black font-dm-sans">
 					{$t('home.services.subtitle')}
 				</p>
 			</div>
 
 			<!-- Services Grid -->
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+			<div class="grid md:grid-cols-2 min-h-[355px] lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
 				<!-- Service 1 -->
 				<div
-					class="bg-[#111111] rounded-3xl p-8 min-h-[400px] flex flex-col"
+					class="bg-[#111111] rounded-3xl min-h-[355px] flex flex-col group transition-all duration-300 ease-in-out hover:shadow-lg hover:border hover:border-[#EEFF8C]"
 					style="box-shadow: 0px 4px 4px -1px rgba(12, 12, 13, 0.05), 0px 4px 4px -1px rgba(12, 12, 13, 0.1);"
 				>
-					<div class="flex-1 space-y-12">
-						<img src="/images/solar_document-outline.svg" alt="Document icon" class="w-14 h-14" />
+					<div class="flex-1 space-y-12 p-6">
+						<!-- Icon -->
+						<File
+							class="w-14 h-14 text-[#EEFF8C] transition-all duration-300 ease-in-out group-hover:w-16 group-hover:h-16"
+						/>
+
 						<div class="space-y-4">
 							<h3
-								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-tight"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: -0.011em;"
+								class="text-[#fafafa] text-xl md:text-[24px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
 							>
 								{$t('home.services.service_1.title')}
 							</h3>
-							<p
-								class="text-[#fafafa] text-base leading-relaxed"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 0.02em;"
-							>
+							<p class="text-[#fafafa] text-base leading-relaxed font-dm-sans">
 								{$t('home.services.service_1.description')}
 							</p>
 						</div>
@@ -343,22 +347,20 @@
 
 				<!-- Service 2 -->
 				<div
-					class="bg-[#111111] rounded-3xl p-8 min-h-[400px] flex flex-col"
+					class="bg-[#111111] rounded-3xl min-h-[355px] flex flex-col group transition-all duration-300 ease-in-out hover:shadow-lg"
 					style="box-shadow: 0px 4px 4px -1px rgba(12, 12, 13, 0.05), 0px 4px 4px -1px rgba(12, 12, 13, 0.1);"
 				>
-					<div class="flex-1 space-y-12">
-						<img src="/images/mage_chart.svg" alt="Chart icon" class="w-14 h-14" />
+					<div class="flex-1 space-y-12 p-6">
+						<ChartNoAxesColumn
+							class="w-14 h-14 text-[#EEFF8C] transition-all duration-300 ease-in-out group-hover:w-16 group-hover:h-16"
+						/>
 						<div class="space-y-4">
 							<h3
-								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-tight"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: -0.011em;"
+								class="text-[#fafafa] text-xl md:text-[24px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
 							>
 								{$t('home.services.service_2.title')}
 							</h3>
-							<p
-								class="text-[#fafafa] text-base leading-relaxed"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 0.02em;"
-							>
+							<p class="text-[#fafafa] text-base leading-relaxed font-dm-sans">
 								{$t('home.services.service_2.description')}
 							</p>
 						</div>
@@ -367,22 +369,20 @@
 
 				<!-- Service 3 -->
 				<div
-					class="bg-[#111111] rounded-3xl p-8 min-h-[400px] flex flex-col md:col-span-2 lg:col-span-1"
+					class="bg-[#111111] rounded-3xl min-h-[355px] flex flex-col group transition-all duration-300 ease-in-out hover:shadow-lg"
 					style="box-shadow: 0px 4px 4px -1px rgba(12, 12, 13, 0.05), 0px 4px 4px -1px rgba(12, 12, 13, 0.1);"
 				>
-					<div class="flex-1 space-y-12">
-						<img src="/images/lucide_handshake.svg" alt="Handshake icon" class="w-14 h-14" />
+					<div class="flex-1 space-y-12 p-6">
+						<Handshake
+							class="w-14 h-14 text-[#EEFF8C] transition-all duration-300 ease-in-out group-hover:w-16 group-hover:h-16"
+						/>
 						<div class="space-y-4">
 							<h3
-								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-tight"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: -0.011em;"
+								class="text-[#fafafa] text-xl md:text-[24px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
 							>
 								{$t('home.services.service_3.title')}
 							</h3>
-							<p
-								class="text-[#fafafa] text-base leading-relaxed"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 0.02em;"
-							>
+							<p class="text-[#fafafa] text-base leading-relaxed font-dm-sans">
 								{$t('home.services.service_3.description')}
 							</p>
 						</div>
@@ -393,141 +393,114 @@
 	</section>
 
 	<!-- Why Bookiper Section -->
-	<section class="bg-[#f4f4f4] py-20">
-		<div class="container mx-auto px-4 lg:px-8">
-			<div class="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-				<!-- Features List -->
-				<div class="space-y-12">
-					<!-- Section Header -->
-					<div class="space-y-6">
-						<h2
-							class="text-3xl md:text-4xl lg:text-5xl font-bold text-black"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
-						>
-							{$t('home.why_bookiper.title')}
-						</h2>
-						<p
-							class="text-lg md:text-xl text-black"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
-							{$t('home.why_bookiper.subtitle')}
-						</p>
-					</div>
-
-					<!-- Features -->
-					<div class="space-y-8">
-						<!-- Feature 1 -->
-						<div class="flex gap-6">
-							<div
-								class="text-black text-2xl font-bold flex-shrink-0"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-							>
-								/01
-							</div>
-							<div class="space-y-2">
-								<h3
-									class="text-black text-xl font-bold"
-									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
-								>
-									{$t('home.why_bookiper.feature_1.title')}
-								</h3>
-								<p
-									class="text-black text-base"
-									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
-								>
-									{$t('home.why_bookiper.feature_1.description')}
-								</p>
-							</div>
-						</div>
-
-						<!-- Feature 2 -->
-						<div class="flex gap-6">
-							<div
-								class="text-black text-2xl font-bold flex-shrink-0"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-							>
-								/02
-							</div>
-							<div class="space-y-2">
-								<h3
-									class="text-black text-xl font-bold"
-									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
-								>
-									{$t('home.why_bookiper.feature_2.title')}
-								</h3>
-								<p
-									class="text-black text-base"
-									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
-								>
-									{$t('home.why_bookiper.feature_2.description')}
-								</p>
-							</div>
-						</div>
-
-						<!-- Feature 3 -->
-						<div class="flex gap-6">
-							<div
-								class="text-black text-2xl font-bold flex-shrink-0"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-							>
-								/03
-							</div>
-							<div class="space-y-2">
-								<h3
-									class="text-black text-xl font-bold"
-									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
-								>
-									{$t('home.why_bookiper.feature_3.title')}
-								</h3>
-								<p
-									class="text-black text-base"
-									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
-								>
-									{$t('home.why_bookiper.feature_3.description')}
-								</p>
-							</div>
-						</div>
-
-						<!-- Feature 4 -->
-						<div class="flex gap-6">
-							<div
-								class="text-black text-2xl font-bold flex-shrink-0"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-							>
-								/04
-							</div>
-							<div class="space-y-2">
-								<h3
-									class="text-black text-xl font-bold"
-									style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
-								>
-									{$t('home.why_bookiper.feature_4.title')}
-								</h3>
-								<p
-									class="text-black text-base"
-									style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
-								>
-									{$t('home.why_bookiper.feature_4.description')}
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- CTA Button -->
-					<button
-						class="bg-black text-[#fafafa] px-8 py-4 rounded-lg text-xl font-medium hover:bg-gray-800 transition-colors w-full sm:w-auto"
+	<section class="bg-[#f4f4f4] py-20 flex justify-center">
+		<div class="container px-4 lg:px-8">
+			<!-- Features List -->
+			<div class="space-y-12 max-w-7xl mx-auto">
+				<!-- Section Header -->
+				<div class="space-y-6">
+					<h2
+						class="text-3xl md:text-4xl lg:text-5xl font-bold text-black font-satoshi"
+						style="letter-spacing: 1.5px;"
 					>
-						{$t('home.why_bookiper.cta')}
-					</button>
+						{$t('home.why_bookiper.title')}
+					</h2>
+					<p class="text-lg md:text-xl text-black font-dm-sans" style=" letter-spacing: 1px;">
+						{$t('home.why_bookiper.subtitle')}
+					</p>
 				</div>
+				<div class="grid lg:grid-cols-2 gap-16 items-center">
+					<div class="space-y-12">
+						<!-- Features -->
+						<div class="space-y-8">
+							<!-- Feature 1 -->
+							<div class="flex gap-6">
+								<div class="text-black text-2xl font-bold flex-shrink-0 font-satoshi">/01</div>
+								<div class="space-y-2">
+									<h3 class="text-black text-xl font-bold" style="letter-spacing: 0.02em;">
+										{$t('home.why_bookiper.feature_1.title')}
+									</h3>
+									<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
+										{$t('home.why_bookiper.feature_1.description')}
+									</p>
+								</div>
+							</div>
 
-				<!-- Feature Image -->
-				<div class="flex justify-center lg:justify-end">
-					<img
-						src="/images/frame-130.png"
-						alt="Team collaboration"
-						class="w-full max-w-lg rounded-3xl object-cover"
-					/>
+							<!-- Feature 2 -->
+							<div class="flex gap-6">
+								<div class="text-black text-2xl font-bold flex-shrink-0 font-satoshi">/02</div>
+								<div class="space-y-2">
+									<h3 class="text-black text-xl font-bold" style="letter-spacing: 0.02em;">
+										{$t('home.why_bookiper.feature_2.title')}
+									</h3>
+									<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
+										{$t('home.why_bookiper.feature_2.description')}
+									</p>
+								</div>
+							</div>
+
+							<!-- Feature 3 -->
+							<div class="flex gap-6">
+								<div class="text-black text-2xl font-bold flex-shrink-0 font-satoshi">/03</div>
+								<div class="space-y-2">
+									<h3
+										class="text-black text-xl font-bold font-satoshi"
+										style="letter-spacing: 0.02em;"
+									>
+										{$t('home.why_bookiper.feature_3.title')}
+									</h3>
+									<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
+										{$t('home.why_bookiper.feature_3.description')}
+									</p>
+								</div>
+							</div>
+
+							<!-- Feature 4 -->
+							<div class="flex gap-6">
+								<div class="text-black text-2xl font-bold flex-shrink-0 font-satoshi">/04</div>
+								<div class="space-y-2">
+									<h3
+										class="text-black text-xl font-bold font-satoshi"
+										style="letter-spacing: 0.02em;"
+									>
+										{$t('home.why_bookiper.feature_4.title')}
+									</h3>
+									<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
+										{$t('home.why_bookiper.feature_4.description')}
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- CTA Button -->
+						<button
+							class="group bg-black text-[#fafafa] px-8 py-2.5 rounded-lg text-xl font-medium
+active:bg-[#292929] disabled:bg-[#CECECE] disabled:text-[#959595]
+transition-colors w-full cursor-pointer flex items-center justify-center gap-2 overflow-hidden"
+						>
+							<!-- Animated Arrow Icon -->
+							<span
+								class="transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
+transition-all duration-500 ease-out"
+							>
+								<ArrowRight class="w-5 h-5 text-[#fafafa]" />
+							</span>
+
+							<!-- Button Text -->
+							<span
+								class="transform group-hover:translate-x-2 transition-transform duration-500 ease-out font-dm-mono"
+							>
+								{$t('home.why_bookiper.cta')}
+							</span>
+						</button>
+					</div>
+					<div class="flex justify-center h-full lg:justify-end">
+						<img
+							src="/images/frame-130.png"
+							alt="Team collaboration"
+							class="h-full rounded-3xl object-cover"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -539,74 +512,55 @@
 			<!-- Section Header -->
 			<div class="text-center mb-16 max-w-4xl mx-auto">
 				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
-					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
+					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6 font-satoshi"
+					style="letter-spacing: 1.5px;"
 				>
 					{$t('home.team.title')}
 				</h2>
-				<p
-					class="text-lg md:text-xl text-black"
-					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-				>
+				<p class="text-lg md:text-xl text-black font-dm-sans" style="letter-spacing: 1px;">
 					{$t('home.team.subtitle')}
 				</p>
 			</div>
 
 			<!-- Team Grid -->
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6.5xl mx-auto">
 				<!-- Team Member 1 -->
-				<div class="border border-[#7e7e7e] rounded-3xl p-8 text-center space-y-8">
+				<div
+					class="border border-[#7e7e7e] hover:border-2 rounded-3xl p-8 text-center space-y-8 min-h-[460px]"
+				>
 					<img
 						src="/images/ellipse-20.png"
 						alt="Olena Kovalchuk"
 						class="w-40 h-40 rounded-full mx-auto object-cover"
 					/>
 					<div class="space-y-3">
-						<h3
-							class="text-black text-xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
-						>
+						<h3 class="text-black text-xl font-bold font-satoshi" style="letter-spacing: 0.02em;">
 							Olena Kovalchuk
 						</h3>
-						<p
-							class="text-[#7e7e7e] text-base"
-							style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-[#7e7e7e] text-base font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.team.member_1.position')}
 						</p>
-						<p
-							class="text-black text-base"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.team.member_1.description')}
 						</p>
 					</div>
 				</div>
 
 				<!-- Team Member 2 -->
-				<div class="border border-[#7e7e7e] rounded-3xl p-8 text-center space-y-8">
+				<div class="border hover:border-2 border-[#7e7e7e] rounded-3xl p-8 text-center space-y-8">
 					<img
 						src="/images/ellipse-21.png"
 						alt="Andriy Melnyk"
 						class="w-40 h-40 rounded-full mx-auto object-cover"
 					/>
 					<div class="space-y-3">
-						<h3
-							class="text-black text-xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
-						>
+						<h3 class="text-black text-xl font-bold font-satoshi" style="letter-spacing: 0.02em;">
 							Andriy Melnyk
 						</h3>
-						<p
-							class="text-[#7e7e7e] text-base"
-							style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-[#7e7e7e] text-base font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.team.member_2.position')}
 						</p>
-						<p
-							class="text-black text-base"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.team.member_2.description')}
 						</p>
 					</div>
@@ -614,7 +568,7 @@
 
 				<!-- Team Member 3 -->
 				<div
-					class="border border-[#7e7e7e] rounded-3xl p-8 text-center space-y-8 md:col-span-2 lg:col-span-1"
+					class="border hover:border-2 border-[#7e7e7e] rounded-3xl p-8 text-center space-y-8 md:col-span-2 lg:col-span-1"
 				>
 					<img
 						src="/images/ellipse-22.png"
@@ -622,22 +576,13 @@
 						class="w-40 h-40 rounded-full mx-auto object-cover"
 					/>
 					<div class="space-y-3">
-						<h3
-							class="text-black text-xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 0.02em;"
-						>
+						<h3 class="text-black text-xl font-bold font-satoshi" style="letter-spacing: 0.02em;">
 							Iryna Shevchenko
 						</h3>
-						<p
-							class="text-[#7e7e7e] text-base"
-							style="font-family: 'DmSans-Light', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-[#7e7e7e] text-base font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.team.member_3.position')}
 						</p>
-						<p
-							class="text-black text-base"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.team.member_3.description')}
 						</p>
 					</div>
@@ -652,121 +597,18 @@
 			<!-- Section Header -->
 			<div class="text-center mb-16 max-w-4xl mx-auto">
 				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
-					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
+					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6 font-satoshi"
+					style="letter-spacing: 1.5px;"
 				>
 					{$t('home.testimonials.title')}
 				</h2>
-				<p
-					class="text-lg md:text-xl text-black"
-					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-				>
+				<p class="text-lg md:text-xl text-black font-dm-sans" style=" letter-spacing: 1px;">
 					{$t('home.testimonials.subtitle')}
 				</p>
 			</div>
 
-			<!-- Testimonials -->
-			<div class="space-y-8">
-				<!-- Testimonials Grid -->
-				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-					<!-- Testimonial 1 -->
-					<div class="bg-[#e5e5e5] rounded-3xl p-6 space-y-6">
-						<p
-							class="text-[#aaaaaa] text-lg leading-relaxed"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
-						>
-							{$t('home.testimonials.testimonial_1.text')}
-						</p>
-						<div class="flex items-center gap-4">
-							<img
-								src="/images/ellipse-70.png"
-								alt="Michael Turner"
-								class="w-12 h-12 rounded-full object-cover"
-							/>
-							<div>
-								<h4
-									class="text-[#5a5a5a] text-lg font-bold"
-									style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-								>
-									{$t('home.testimonials.testimonial_1.author')}
-								</h4>
-								<p
-									class="text-[#5a5a5a] text-sm"
-									style="font-family: 'DmSans-Regular', sans-serif;"
-								>
-									{$t('home.testimonials.testimonial_1.position')}
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- Testimonial 2 -->
-					<div class="bg-[#e5e5e5] rounded-3xl p-6 space-y-6 lg:pt-12 lg:pb-12">
-						<p
-							class="text-black text-lg leading-relaxed"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
-						>
-							{$t('home.testimonials.testimonial_2.text')}
-						</p>
-						<div class="flex items-center gap-4">
-							<img
-								src="/images/ellipse-71.png"
-								alt="Frances Swann"
-								class="w-12 h-12 rounded-full object-cover"
-							/>
-							<div>
-								<h4
-									class="text-black text-lg font-bold"
-									style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-								>
-									{$t('home.testimonials.testimonial_2.author')}
-								</h4>
-								<p class="text-black text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-									{$t('home.testimonials.testimonial_2.position')}
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- Testimonial 3 -->
-					<div class="bg-[#e5e5e5] rounded-3xl p-6 space-y-6 md:col-span-2 lg:col-span-1">
-						<p
-							class="text-[#aaaaaa] text-lg leading-relaxed"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
-						>
-							{$t('home.testimonials.testimonial_3.text')}
-						</p>
-						<div class="flex items-center gap-4">
-							<img
-								src="/images/ellipse-72.png"
-								alt="Mary Freund"
-								class="w-12 h-12 rounded-full object-cover"
-							/>
-							<div>
-								<h4
-									class="text-[#5a5a5a] text-lg font-bold"
-									style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-								>
-									{$t('home.testimonials.testimonial_3.author')}
-								</h4>
-								<p
-									class="text-[#5a5a5a] text-sm"
-									style="font-family: 'DmSans-Regular', sans-serif;"
-								>
-									{$t('home.testimonials.testimonial_3.position')}
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Pagination Dots -->
-				<div class="flex justify-center gap-2">
-					{#each Array(6) as _, i}
-						<div class="w-2 h-2 rounded-full {i === 1 ? 'bg-black' : 'bg-[#aaaaaa]'}"></div>
-					{/each}
-				</div>
-			</div>
+			<!-- Testimonials Carousel -->
+			<TestimonialsCarousel />
 		</div>
 	</section>
 
@@ -776,15 +618,12 @@
 			<!-- Section Header -->
 			<div class="text-center mb-16 max-w-4xl mx-auto">
 				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#fafafa] mb-6"
-					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
+					class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#fafafa] mb-6 font-satoshi"
+					style="letter-spacing: 1.5px;"
 				>
 					{$t('home.pricing.title')}
 				</h2>
-				<p
-					class="text-lg md:text-xl text-[#fafafa]"
-					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-				>
+				<p class="text-lg md:text-xl text-[#fafafa] font-dm-sans" style="letter-spacing: 1px;">
 					{$t('home.pricing.subtitle')}
 				</p>
 			</div>
@@ -800,15 +639,12 @@
 					<div class="space-y-8">
 						<!-- Price Header -->
 						<div class="text-center space-y-6">
-							<h3
-								class="text-[#fafafa] text-xl md:text-2xl font-bold leading-[29px]"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-							>
+							<h3 class="text-[#fafafa] text-xl md:text-2xl font-bold leading-[29px] font-satoshi">
 								{$t('home.pricing.plan_title')}
 							</h3>
 							<div
-								class="text-[#f4f4f4] text-3xl lg:text-5xl font-bold leading-[58px]"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 2px;"
+								class="text-[#f4f4f4] text-3xl lg:text-5xl font-bold leading-[58px] font-satoshi"
+								style="letter-spacing: 2px;"
 							>
 								{$t('home.pricing.plan_price')}
 							</div>
@@ -818,37 +654,25 @@
 						<div class="space-y-5">
 							<div class="flex items-start gap-4">
 								<CircleCheck class="w-6 h-6 fill-[#edff8c] text-black flex-shrink-0 mt-1" />
-								<p
-									class="text-[#f4f4f4] text-lg"
-									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
-								>
+								<p class="text-[#f4f4f4] text-lg font-dm-sans" style="letter-spacing: 1.5px;">
 									{$t('home.pricing.features.bookkeeping')}
 								</p>
 							</div>
 							<div class="flex items-start gap-4">
 								<CircleCheck class="w-6 h-6 fill-[#edff8c] text-black flex-shrink-0 mt-1" />
-								<p
-									class="text-[#f4f4f4] text-lg"
-									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
-								>
+								<p class="text-[#f4f4f4] text-lg font-dm-sans" style="letter-spacing: 1.5px;">
 									{$t('home.pricing.features.reports')}
 								</p>
 							</div>
 							<div class="flex items-start gap-4">
 								<CircleCheck class="w-6 h-6 fill-[#edff8c] text-black flex-shrink-0 mt-1" />
-								<p
-									class="text-[#f4f4f4] text-lg"
-									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
-								>
+								<p class="text-[#f4f4f4] text-lg font-dm-sans" style="letter-spacing: 1.5px;">
 									{$t('home.pricing.features.support')}
 								</p>
 							</div>
 							<div class="flex items-start gap-4">
 								<CircleCheck class="w-6 h-6 fill-[#edff8c] text-black flex-shrink-0 mt-1" />
-								<p
-									class="text-[#f4f4f4] text-lg"
-									style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
-								>
+								<p class="text-[#f4f4f4] text-lg font-dm-sans" style="letter-spacing: 1.5px;">
 									{$t('home.pricing.features.onboarding')}
 								</p>
 							</div>
@@ -858,167 +682,62 @@
 					<!-- CTA and Disclaimer -->
 					<div class="space-y-3">
 						<button
-							class="bg-[#edff8c] text-black w-full py-4 rounded-lg text-xl font-medium hover:bg-[#edff8c]/90 transition-colors leading-[20px]"
-							style="font-family: DmMono-Medium, sans-serif"
+							class="group bg-[#edff8c] text-black w-full py-4 min-h-[60px] rounded-lg text-xl font-medium
+         hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3] disabled:text-[#777777]
+         disabled:cursor-not-allowed transition-colors leading-[20px] flex items-center justify-center gap-2 overflow-hidden font-dm-sans"
 						>
-							{$t('home.pricing.cta')}
+							<!-- Animated Arrow Icon -->
+							<span
+								class="transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
+           transition-all duration-500 ease-out"
+							>
+								<ArrowRight class="w-5 h-5 text-black" />
+							</span>
+
+							<!-- Button Text -->
+							<span
+								class="transform group-hover:translate-x-2 transition-transform duration-500 ease-out font-dm-mono"
+							>
+								{$t('home.pricing.cta')}
+							</span>
 						</button>
-						<p
-							class="text-[#7e7e7e] text-sm md:text-base text-center leading-[24px]"
-							style="font-family: 'DmSans-Regular', sans-serif; "
-						>
+
+						<p class="text-[#7e7e7e] text-sm md:text-base text-center leading-[24px] font-dm-sans">
 							{$t('home.pricing.disclaimer')}
 						</p>
 					</div>
 				</div>
 
 				<!-- Calculator Form -->
-				<div
-					class="bg-[#fafafa] rounded-3xl px-[79px] py-[29px] lg:p-12 flex flex-col gap-2.5 justify-between h-full"
-				>
-					<!-- Form Header -->
-					<div class="space-y-4 text-center">
-						<h3
-							class="text-black text-3xl lg:text-4xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
-						>
-							{$t('home.pricing.calculator.title')}
-						</h3>
-						<p
-							class="text-black text-xl leading-[30px]"
-							style="font-family: 'DmSans-Regular', sans-serif; "
-						>
-							{$t('home.pricing.calculator.subtitle')}
-						</p>
-					</div>
-
-					<!-- Form -->
-					<form class="space-y-6">
-						<!-- Company Name -->
-						<div class="space-y-2">
-							<input
-								type="text"
-								placeholder={$t('home.pricing.calculator.company_name.placeholder')}
-								class="w-full rounded-lg border border-black px-4 py-4 text-[#5a5a5a] text-base placeholder-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-black"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-							/>
-							<p class="text-[#5a5a5a] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								{$t('home.pricing.calculator.company_name.help')}
-							</p>
-						</div>
-
-						<!-- Number of Associates -->
-						<div class="space-y-2">
-							<input
-								type="text"
-								placeholder={$t('home.pricing.calculator.associates.placeholder')}
-								class="w-full rounded-lg border border-black px-4 py-4 text-[#5a5a5a] text-base placeholder-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-black"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-							/>
-							<p class="text-[#5a5a5a] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								{$t('home.pricing.calculator.associates.help')}
-							</p>
-						</div>
-
-						<!-- Yearly Turnover -->
-						<div class="space-y-2">
-							<input
-								type="text"
-								placeholder={$t('home.pricing.calculator.turnover.placeholder')}
-								class="w-full rounded-lg border border-black px-4 py-4 text-[#5a5a5a] text-base placeholder-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-black"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-							/>
-							<p class="text-[#5a5a5a] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
-								{$t('home.pricing.calculator.turnover.help')}
-							</p>
-						</div>
-
-						<!-- Submit Button -->
-						<button
-							type="submit"
-							class="bg-black text-[#fafafa] w-full py-4 rounded-lg text-xl font-medium hover:bg-gray-800 transition-colors"
-							style="font-family: 'DmMono-Medium', sans-serif;"
-						>
-							{$t('home.pricing.calculator.submit')}
-						</button>
-					</form>
-				</div>
+				<CalculatePrice />
 			</div>
 		</div>
 	</section>
 
 	<!-- FAQ Section -->
-	<section class="bg-[#f4f4f4] py-20">
-		<div class="container mx-auto px-4 lg:px-8">
-			<!-- Section Header -->
-			<div class="text-center mb-16 max-w-4xl mx-auto">
-				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6"
-					style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
-				>
-					{$t('home.faq.title')}
-				</h2>
-				<p
-					class="text-lg md:text-xl text-black"
-					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-				>
-					{$t('home.faq.subtitle')}
-				</p>
-			</div>
-
-			<!-- FAQ List -->
-			<div class="max-w-4xl mx-auto space-y-4">
-				{#each ['home.faq.questions.cost', 'home.faq.questions.industries', 'home.faq.questions.tax_compliance', 'home.faq.questions.scalability', 'home.faq.questions.getting_started'] as question}
-					<div class="border border-[#7e7e7e] rounded-3xl p-6">
-						<div class="flex items-center justify-between">
-							<h3
-								class="text-black text-xl font-bold"
-								style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-							>
-								{$t(question)}
-							</h3>
-							<img src="/images/ep-arrow-up0.png" alt="Toggle" class="w-6 h-6" />
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
-
+	<FAQ />
 	<!-- Contact Section -->
 	<section id="contact" class="bg-[#f4f4f4] py-20">
 		<div class="container mx-auto px-4 lg:px-8">
-			<div class="grid lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto">
+			<div class="grid lg:grid-cols-[45%_55%] gap-10 items-start max-w-7xl mx-auto">
 				<!-- Contact Info -->
 				<div class="space-y-6">
-					<h2
-						class="text-3xl md:text-4xl lg:text-5xl font-bold text-black"
-						style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
-					>
+					<h2 class="text-[40px] font-bold text-black font-satoshi" style=" letter-spacing: 1.5px;">
 						{$t('home.contact.title')}
 					</h2>
-					<p
-						class="text-lg md:text-xl text-black"
-						style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-					>
+					<p class="text-lg md:text-xl text-black font-dm-sans" style="letter-spacing: 1px;">
 						{$t('home.contact.subtitle')}
 					</p>
 				</div>
 
 				<!-- Contact Form -->
-				<div class="bg-[#111111] rounded-3xl p-8 lg:p-12 space-y-8">
+				<div class="bg-[#111111] rounded-3xl p-8 lg:p-10 space-y-8">
 					<!-- Form Header -->
 					<div class="space-y-4">
-						<h3
-							class="text-[#fafafa] text-2xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-						>
+						<h3 class="text-[#fafafa] text-2xl font-bold font-satoshi" style="letter-spacing: 1px;">
 							{$t('home.contact.form.title')}
 						</h3>
-						<p
-							class="text-[#fafafa] text-base"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-[#fafafa] text-base font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.contact.form.subtitle')}
 						</p>
 					</div>
@@ -1031,10 +750,10 @@
 								type="text"
 								placeholder={$t('home.contact.form.full_name.placeholder')}
 								required
-								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
+								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
+								style="letter-spacing: 1px;"
 							/>
-							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
+							<p class="text-[#e5e5e5] text-sm font-dm-sans" style="letter-spacing: 1px;">
 								{$t('home.contact.form.full_name.help')}
 							</p>
 						</div>
@@ -1045,10 +764,10 @@
 								type="email"
 								placeholder={$t('home.contact.form.email.placeholder')}
 								required
-								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
+								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
+								style="letter-spacing: 1px;"
 							/>
-							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
+							<p class="text-[#e5e5e5] text-sm font-dm-sans" style="letter-spacing: 1px;">
 								{$t('home.contact.form.email.help')}
 							</p>
 						</div>
@@ -1058,10 +777,10 @@
 							<input
 								type="tel"
 								placeholder={$t('home.contact.form.phone.placeholder')}
-								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
+								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
+								style="letter-spacing: 1px;"
 							/>
-							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
+							<p class="text-[#e5e5e5] text-sm font-dm-sans">
 								{$t('home.contact.form.phone.help')}
 							</p>
 						</div>
@@ -1070,11 +789,10 @@
 						<div class="space-y-2">
 							<textarea
 								placeholder={$t('home.contact.form.message.placeholder')}
-								rows="4"
-								class="w-full resize-none rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c]"
-								style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
+								rows="1"
+								class="w-full resize-none rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
 							></textarea>
-							<p class="text-[#e5e5e5] text-sm" style="font-family: 'DmSans-Regular', sans-serif;">
+							<p class="text-[#e5e5e5] text-sm font-dm-sans">
 								{$t('home.contact.form.message.help')}
 							</p>
 						</div>
@@ -1082,10 +800,28 @@
 						<!-- Submit Button -->
 						<button
 							type="submit"
-							class="bg-[#edff8c] text-black w-full py-4 rounded-lg text-xl font-medium hover:bg-[#edff8c]/90 transition-colors"
-							style="font-family: 'DmMono-Medium', sans-serif;"
+							class="group bg-[#EDFF8C] text-black w-full py-4 rounded-lg text-xl font-medium cursor-pointer
+         hover:bg-[#E9FF73]
+         active:bg-[#DFFF36]
+         disabled:bg-[#F3F6E3]
+         disabled:text-[#777777]
+         disabled:cursor-not-allowed
+         transition-colors flex items-center justify-center gap-2 overflow-hidden font-dm-sans"
 						>
-							{$t('home.contact.form.submit')}
+							<!-- Animated Arrow Icon -->
+							<span
+								class="transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
+           transition-all duration-500 ease-out"
+							>
+								<ArrowRight class="w-5 h-5 text-black" />
+							</span>
+
+							<!-- Button Text -->
+							<span
+								class="transform group-hover:translate-x-2 transition-transform duration-500 ease-out"
+							>
+								{$t('home.contact.form.submit')}
+							</span>
 						</button>
 					</form>
 				</div>
@@ -1104,15 +840,12 @@
 				<div class="lg:col-span-5 space-y-8">
 					<div class="space-y-6">
 						<h3
-							class="text-[#edff8c] text-3xl lg:text-4xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif; letter-spacing: 1.5px;"
+							class="text-[#edff8c] text-3xl lg:text-4xl font-bold font-satoshi"
+							style="letter-spacing: 1.5px;"
 						>
 							BOOKIPER
 						</h3>
-						<p
-							class="text-[#fafafa] text-lg max-w-lg"
-							style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1px;"
-						>
+						<p class="text-[#fafafa] text-lg max-w-lg font-dm-sans" style="letter-spacing: 1px;">
 							{$t('home.footer.description')}
 						</p>
 					</div>
@@ -1138,10 +871,7 @@
 				<div class="lg:col-span-3 space-y-12">
 					<!-- Menu -->
 					<div class="space-y-6">
-						<h4
-							class="text-[#fafafa] text-xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-						>
+						<h4 class="text-[#fafafa] text-xl font-bold font-satoshi">
 							{$t('home.footer.menu_title')}
 						</h4>
 						<nav class="space-y-4">
@@ -1166,10 +896,7 @@
 
 					<!-- Contact - Directly below Menu -->
 					<div class="space-y-6">
-						<h4
-							class="text-[#fafafa] text-xl font-bold"
-							style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-						>
+						<h4 class="text-[#fafafa] text-xl font-bold font-satoshi">
 							{$t('home.footer.contact_title')}
 						</h4>
 						<div class="space-y-4 text-[#fafafa]">
@@ -1191,10 +918,7 @@
 
 				<!-- Resources Links -->
 				<div class="lg:col-span-4 space-y-6">
-					<h4
-						class="text-[#fafafa] text-xl font-bold"
-						style="font-family: 'SatoshiVariable-Bold', sans-serif;"
-					>
+					<h4 class="text-[#fafafa] text-xl font-bold font-satoshi">
 						{$t('home.footer.resources_title')}
 					</h4>
 					<nav class="space-y-4">
@@ -1221,23 +945,23 @@
 				class="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-4 pt-8 border-t border-[#333]"
 			>
 				<p
-					class="text-[#fafafa] text-center sm:text-left"
-					style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
+					class="text-[#fafafa] text-center sm:text-left font-dm-sans"
+					style="letter-spacing: 1.5px;"
 				>
 					{$t('home.footer.copyright')}
 				</p>
 				<div class="flex flex-col items-start sm:flex-row gap-4 sm:gap-8 text-center sm:text-left">
 					<a
 						href="#privacy"
-						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors"
-						style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
+						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors font-dm-sans"
+						style="letter-spacing: 1.5px;"
 					>
 						{$t('home.footer.privacy_policy')}
 					</a>
 					<a
 						href="#terms"
-						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors"
-						style="font-family: 'DmSans-Regular', sans-serif; letter-spacing: 1.5px;"
+						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors font-dm-sans"
+						style="letter-spacing: 1.5px;"
 					>
 						{$t('home.footer.terms_of_service')}
 					</a>
@@ -1246,8 +970,21 @@
 		</div>
 	</div>
 </footer>
-<!-- 
+
 <style>
+	:global(header) {
+		transition:
+			transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+			opacity 300ms ease-in-out !important;
+	}
+
+	:global(header nav) {
+		transition:
+			background-color 300ms ease-in-out,
+			border-color 300ms ease-in-out,
+			backdrop-filter 300ms ease-in-out !important;
+	}
+
 	/* Smooth scrolling */
 	:global(html) {
 		scroll-behavior: smooth;
@@ -1255,16 +992,6 @@
 
 	/* Account for fixed header when scrolling to sections */
 	:global(section) {
-		scroll-margin-top: 80px;
+		scroll-margin-top: 100px; /* Adjusted for contained header */
 	}
-
-	/* Mobile menu animation */
-	.mobile-menu-enter {
-		transform: translateX(100%);
-	}
-
-	.mobile-menu-enter-active {
-		transform: translateX(0);
-		transition: transform 300ms ease-in-out;
-	}
-</style> -->
+</style>

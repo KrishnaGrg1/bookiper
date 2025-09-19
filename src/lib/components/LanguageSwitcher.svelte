@@ -32,9 +32,9 @@
 <DropdownMenu>
 	<DropdownMenuTrigger>
 		<Button
-			variant="outline"
+			variant="secondary"
 			size="sm"
-			class="cursor-pointer flex items-center"
+			class="cursor-pointer  flex items-center bg-white"
 			aria-label="Change language"
 		>
 			<Languages class="mr-2 h-4 w-4" />
@@ -47,7 +47,7 @@
 		{#each languages as language}
 			<DropdownMenuItem
 				onclick={() => changeLanguage(language.code)}
-				class={language.code === $locale ? 'bg-accent cursor-not-allowed' : ''}
+				class={language.code === $locale ? ' cursor-not-allowed ' : ''}
 			>
 				<span class="mr-2">{language.flag}</span>
 				{language.name}

@@ -148,6 +148,13 @@
 				"help": "Indicate your company's approximate annual revenue before expenses."
 			},
 			"submit": "Get my quote"
+		},
+		"calculated": {
+			"title": "Calculated",
+			"price_label": "Your estimated monthly price:",
+			"note": "This is an initial estimate. For a detailed breakdown tailored to your business, schedule a quick call with our advisor.",
+			"schedule_call": "Schedule a call",
+			"recalculate": "Recalculate"
 		}
 	},
 	"faq": {
@@ -159,6 +166,13 @@
 			"tax_compliance": "Can you handle tax compliance as well?",
 			"scalability": "What if my company grows — can the plan be adjusted?",
 			"getting_started": "How do I get started?"
+		},
+		"answers": {
+			"cost": "Our plans start from 89€/month, but the final price depends on your company size, type, and activity. You can request a personalized quote through our form.",
+			"industries": "No — we support businesses across different sectors, including retail, IT, consulting, manufacturing, and more.",
+			"tax_compliance": "Yes. We take care of bookkeeping, financial reporting, and tax compliance to keep your business fully aligned with regulations.",
+			"scalability": "Absolutely. Our services are flexible and scale with your business as it expands.",
+			"getting_started": "Simply fill in our form for a personalized offer, and our team will guide you through the onboarding process."
 		}
 	},
 	"contact": {
