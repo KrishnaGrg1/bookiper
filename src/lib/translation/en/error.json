@@ -1,0 +1,13 @@
+{
+	"auth": {
+		"invalid_email": "Please enter a valid email address.",
+		"full_name": "Full name must be at least 2 characters long.",
+		"full_name_max": "Full name must be less than 100 characters.",
+		"phone": "Phone number must be at least 10 digits long.",
+		"phone_max": "Phone number must be less than 15 digits.",
+		"message": "Message must be at least 5 characters long.",
+		"message_max": "Message must be less than 1000 characters.",
+		"required_fields": "Please fill out all required fields.",
+		"form_invalid": "Please correct the errors in the form before submitting."
+	}
+}

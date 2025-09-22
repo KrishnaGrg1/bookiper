@@ -1,7 +1,6 @@
 <script lang="ts">
 	import {
 		CircleCheck,
-		Facebook,
 		Star,
 		Menu,
 		File,
@@ -19,10 +18,12 @@
 	import FAQ from '$lib/components/FAQ.svelte';
 	import ProcessStep from '$lib/components/ProcesStep.svelte';
 	import CalculatePrice from '$lib/components/CalculatePrice.svelte';
+	import ContactForm from '$lib/components/ContactForm.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	let lastScrollY = 0;
 	let isHeaderVisible = true;
 	let hasScrolled = false;
-
+	let { data } = $props();
 	onMount(() => {
 		const header = document.querySelector('header');
 		const navContent = document.querySelector('#nav-content');
@@ -138,13 +139,13 @@
 	<!-- <nav
 		class="bg-[#111111]/95 backdrop-blur-sm border border-[#333] rounded-2xl px-6 py-4 transition-all duration-300 ease-in-out"
 	> -->
-	<nav class="container mx-auto md:px-4 md:py-4 xl:px-20 2xl:px-50">
+	<nav class="container mx-auto md:px-4 md:py-4 xl:px-20">
 		<div
 			id="nav-content"
 			class="flex items-center justify-between bg-[#111111]/95 backdrop-blur-sm p-2 transition-all duration-300 ease-in-out"
 		>
 			<!-- Logo -->
-			<div class="text-[#edff8c] text-2xl lg:text-3xl font-bold cursor-pointer font-satoshi">
+			<div class="text-[#edff8c] text-[32px] font-bold cursor-pointer font-satoshi">
 				{$t('home.brand')}
 			</div>
 
@@ -178,16 +179,28 @@
 				<Button
 					variant="default"
 					onclick={() => (window.location.href = '#pricing')}
-					class="hidden xl:block bg-[#edff8c] text-black font-medium text-base  cursor-pointer
+					class="hidden  bg-[#edff8c] group text-black font-medium text-base  cursor-pointer
 						hover:bg-[#E9FF73]
 		active:bg-[#DFFF36]
 		disabled:bg-[#F3F6E3]
 		disabled:text-[#777777]
 		disabled:cursor-not-allowed
 		transition-colors
-		font-dm-mono
-					">{$t('home.calculate_price')}</Button
+		font-dm-mono xl:flex items-center justify-center gap-2 overflow-hidden
+					"
 				>
+					<span
+						class="transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
+		       transition-all duration-500 ease-out"
+					>
+						<ArrowRight class="w-6 h-6 text-black" />
+					</span>
+					<span
+						class="transform group-hover:translate-x-1 transition-transform duration-500 ease-out"
+					>
+						{$t('home.calculate_price')}
+					</span>
+				</Button>
 
 				<LanguageSwitcher />
 
@@ -209,7 +222,7 @@
 							{/each}
 							<Button
 								onclick={() => (window.location.href = '#pricing')}
-								class="mt-4 w-full bg-[#edff8c] text-black py-3 font-medium font-dm-mono	hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3] disabled:text-[#777777] disabled:cursor-not-allowed transition-colors"
+								class="mt-4 w-full group bg-[#edff8c] text-black py-3 font-medium font-dm-mono	hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3] disabled:text-[#777777] disabled:cursor-not-allowed transition-colors"
 							>
 								{$t('home.calculate_price')}
 							</Button>
@@ -252,10 +265,10 @@
 
 					<div class="space-y-4 max-w-lg">
 						<button
-							class="group bg-[#edff8c] text-black px-8 py-4 rounded-lg text-xl font-medium
+							class="group bg-[#edff8c] text-black px-8 py-4 rounded-lg text-lg sm:text-xl font-medium
   hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3]
   disabled:text-[#777777] disabled:cursor-not-allowed transition-colors
-  w-full cursor-pointer flex items-center justify-center gap-2 font-dm-mono"
+  w-full cursor-pointer flex items-center justify-center gap-2 font-dm-mono h-[50px]"
 							aria-label={$t('home.hero.cta_primary')}
 						>
 							<ArrowRight
@@ -474,6 +487,7 @@
 
 						<!-- CTA Button -->
 						<button
+							onclick={() => window.open('https://cal.com/charles-martin-hpuy6l/30min', '_blank')}
 							class="group bg-black text-[#fafafa] px-8 py-2.5 rounded-lg text-xl font-medium
 active:bg-[#292929] disabled:bg-[#CECECE] disabled:text-[#959595]
 transition-colors w-full cursor-pointer flex items-center justify-center gap-2 overflow-hidden"
@@ -680,28 +694,30 @@ transition-all duration-500 ease-out"
 					</div>
 
 					<!-- CTA and Disclaimer -->
-					<div class="space-y-3">
-						<button
-							class="group bg-[#edff8c] text-black w-full py-4 min-h-[60px] rounded-lg text-xl font-medium
-         hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3] disabled:text-[#777777]
-         disabled:cursor-not-allowed transition-colors leading-[20px] flex items-center justify-center gap-2 overflow-hidden font-dm-sans"
-						>
-							<!-- Animated Arrow Icon -->
-							<span
-								class="transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
-           transition-all duration-500 ease-out"
+					<div class="space-y-3 flex flex-col gap-2">
+						<div>
+							<a
+								href="https://cal.com/charles-martin-hpuy6l/30min"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="group bg-[#edff8c] text-black w-full py-4 min-h-[60px] rounded-lg text-xl font-medium
+	hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3] disabled:text-[#777777]
+	disabled:cursor-not-allowed transition-colors leading-[20px] flex items-center justify-center gap-2 overflow-hidden font-dm-sans"
 							>
-								<ArrowRight class="w-5 h-5 text-black" />
-							</span>
+								<span
+									class="transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
+		transition-all duration-500 ease-out"
+								>
+									<ArrowRight class="w-5 h-5 text-black" />
+								</span>
 
-							<!-- Button Text -->
-							<span
-								class="transform group-hover:translate-x-2 transition-transform duration-500 ease-out font-dm-mono"
-							>
-								{$t('home.pricing.cta')}
-							</span>
-						</button>
-
+								<span
+									class="transform group-hover:translate-x-2 transition-transform duration-500 ease-out font-dm-mono"
+								>
+									{$t('home.pricing.cta')}
+								</span>
+							</a>
+						</div>
 						<p class="text-[#7e7e7e] text-sm md:text-base text-center leading-[24px] font-dm-sans">
 							{$t('home.pricing.disclaimer')}
 						</p>
@@ -743,87 +759,7 @@ transition-all duration-500 ease-out"
 					</div>
 
 					<!-- Form -->
-					<form class="space-y-6">
-						<!-- Full Name -->
-						<div class="space-y-2">
-							<input
-								type="text"
-								placeholder={$t('home.contact.form.full_name.placeholder')}
-								required
-								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
-								style="letter-spacing: 1px;"
-							/>
-							<p class="text-[#e5e5e5] text-sm font-dm-sans" style="letter-spacing: 1px;">
-								{$t('home.contact.form.full_name.help')}
-							</p>
-						</div>
-
-						<!-- Email -->
-						<div class="space-y-2">
-							<input
-								type="email"
-								placeholder={$t('home.contact.form.email.placeholder')}
-								required
-								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
-								style="letter-spacing: 1px;"
-							/>
-							<p class="text-[#e5e5e5] text-sm font-dm-sans" style="letter-spacing: 1px;">
-								{$t('home.contact.form.email.help')}
-							</p>
-						</div>
-
-						<!-- Phone -->
-						<div class="space-y-2">
-							<input
-								type="tel"
-								placeholder={$t('home.contact.form.phone.placeholder')}
-								class="w-full rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
-								style="letter-spacing: 1px;"
-							/>
-							<p class="text-[#e5e5e5] text-sm font-dm-sans">
-								{$t('home.contact.form.phone.help')}
-							</p>
-						</div>
-
-						<!-- Message -->
-						<div class="space-y-2">
-							<textarea
-								placeholder={$t('home.contact.form.message.placeholder')}
-								rows="1"
-								class="w-full resize-none rounded-lg border border-[#f4f4f4] bg-transparent px-4 py-4 text-[#e5e5e5] placeholder-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#edff8c] font-dm-sans"
-							></textarea>
-							<p class="text-[#e5e5e5] text-sm font-dm-sans">
-								{$t('home.contact.form.message.help')}
-							</p>
-						</div>
-
-						<!-- Submit Button -->
-						<button
-							type="submit"
-							class="group bg-[#EDFF8C] text-black w-full py-4 rounded-lg text-xl font-medium cursor-pointer
-         hover:bg-[#E9FF73]
-         active:bg-[#DFFF36]
-         disabled:bg-[#F3F6E3]
-         disabled:text-[#777777]
-         disabled:cursor-not-allowed
-         transition-colors flex items-center justify-center gap-2 overflow-hidden font-dm-sans"
-						>
-							<!-- Animated Arrow Icon -->
-							<span
-								class="transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
-           transition-all duration-500 ease-out"
-							>
-								<ArrowRight class="w-5 h-5 text-black" />
-							</span>
-
-							<!-- Button Text -->
-							<span
-								class="transform group-hover:translate-x-2 transition-transform duration-500 ease-out"
-							>
-								{$t('home.contact.form.submit')}
-							</span>
-						</button>
-					</form>
+					<ContactForm contact={data.contactForm} />
 				</div>
 			</div>
 		</div>
@@ -831,145 +767,7 @@ transition-all duration-500 ease-out"
 </main>
 
 <!-- Footer -->
-<footer class="bg-[#111111] py-16">
-	<div class="container mx-auto px-4 lg:px-8">
-		<div class="space-y-16">
-			<!-- Footer Content -->
-			<div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
-				<!-- Brand Section -->
-				<div class="lg:col-span-5 space-y-8">
-					<div class="space-y-6">
-						<h3
-							class="text-[#edff8c] text-3xl lg:text-4xl font-bold font-satoshi"
-							style="letter-spacing: 1.5px;"
-						>
-							BOOKIPER
-						</h3>
-						<p class="text-[#fafafa] text-lg max-w-lg font-dm-sans" style="letter-spacing: 1px;">
-							{$t('home.footer.description')}
-						</p>
-					</div>
-					<!-- Social Media -->
-					<div class="flex gap-6">
-						<Facebook
-							class="w-11 h-11 p-2 bg-blue-600 fill-white rounded-full hover:bg-blue-700 transition-colors cursor-pointer"
-						/>
-						<img
-							src="/images/logos_whatsapp-icon.png"
-							alt="WhatsApp"
-							class="w-11 h-11 hover:opacity-80 transition-opacity cursor-pointer"
-						/>
-						<img
-							src="/images/instagram.png"
-							alt="Instagram"
-							class="w-11 h-11 hover:opacity-80 transition-opacity cursor-pointer"
-						/>
-					</div>
-				</div>
-
-				<!-- Menu Links -->
-				<div class="lg:col-span-3 space-y-12">
-					<!-- Menu -->
-					<div class="space-y-6">
-						<h4 class="text-[#fafafa] text-xl font-bold font-satoshi">
-							{$t('home.footer.menu_title')}
-						</h4>
-						<nav class="space-y-4">
-							<a href="#home" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-								>{$t('home.menu.home')}</a
-							>
-							<a
-								href="#how-we-work"
-								class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-								>{$t('home.menu.how_we_work')}</a
-							>
-							<a
-								href="#services"
-								class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-								>{$t('home.menu.services')}</a
-							>
-							<a href="#about" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-								>{$t('home.menu.about')}</a
-							>
-						</nav>
-					</div>
-
-					<!-- Contact - Directly below Menu -->
-					<div class="space-y-6">
-						<h4 class="text-[#fafafa] text-xl font-bold font-satoshi">
-							{$t('home.footer.contact_title')}
-						</h4>
-						<div class="space-y-4 text-[#fafafa]">
-							<div class="flex gap-4">
-								<span class="font-medium min-w-[60px]">{$t('home.contact.phone')}:</span>
-								<span>+12 123 345 67</span>
-							</div>
-							<div class="flex gap-4">
-								<span class="font-medium min-w-[60px]">{$t('home.contact.email')}:</span>
-								<span>bookiper@gmail.com</span>
-							</div>
-							<div class="flex gap-4">
-								<span class="font-medium min-w-[70px]">{$t('home.contact.address')}:</span>
-								<span>Lisa Simpson, 742 Evergreens</span>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Resources Links -->
-				<div class="lg:col-span-4 space-y-6">
-					<h4 class="text-[#fafafa] text-xl font-bold font-satoshi">
-						{$t('home.footer.resources_title')}
-					</h4>
-					<nav class="space-y-4">
-						<a
-							href="#testimonials"
-							class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-							>{$t('home.resources.testimonials')}</a
-						>
-						<a href="#pricing" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-							>{$t('home.menu.pricing')}</a
-						>
-						<a href="#faq" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-							>{$t('home.resources.faq')}</a
-						>
-						<a href="#contact" class="block text-[#fafafa] hover:text-[#edff8c] transition-colors"
-							>{$t('home.resources.free_consultation')}</a
-						>
-					</nav>
-				</div>
-			</div>
-
-			<!-- Footer Bottom -->
-			<div
-				class="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-4 pt-8 border-t border-[#333]"
-			>
-				<p
-					class="text-[#fafafa] text-center sm:text-left font-dm-sans"
-					style="letter-spacing: 1.5px;"
-				>
-					{$t('home.footer.copyright')}
-				</p>
-				<div class="flex flex-col items-start sm:flex-row gap-4 sm:gap-8 text-center sm:text-left">
-					<a
-						href="#privacy"
-						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors font-dm-sans"
-						style="letter-spacing: 1.5px;"
-					>
-						{$t('home.footer.privacy_policy')}
-					</a>
-					<a
-						href="#terms"
-						class="text-[#fafafa] underline hover:text-[#edff8c] transition-colors font-dm-mono"
-						style="letter-spacing: 1.5px;"
-					>
-						{$t('home.footer.terms_of_service')}
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
+<Footer />
 
 <style>
 	:global(header) {

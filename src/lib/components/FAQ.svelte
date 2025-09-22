@@ -31,7 +31,7 @@
 	];
 </script>
 
-<section class="bg-[#f4f4f4] py-20 pb-24">
+<section class="bg-[#f4f4f4] py-20 md:pb-24">
 	<div class="container mx-auto px-4 lg:px-8">
 		<!-- Section Header -->
 		<div class="text-center mb-16 max-w-4xl mx-auto">

@@ -136,7 +136,7 @@
 			</button>
 		</form>
 	{:else}
-		<div class="px-11 flex flex-col items-center gap-6">
+		<div class="md:px-11 flex flex-col items-center gap-6">
 			<div class="flex justify-center">
 				<div class="flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-full">
 					<h4 class="font-bold text-2xl font-satoshi">

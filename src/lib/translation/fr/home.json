@@ -166,6 +166,13 @@
 			"tax_compliance": "Pouvez‑vous gérer la conformité fiscale aussi ?",
 			"scalability": "Que se passe‑t‑il si mon entreprise se développe — le plan peut‑il être ajusté ?",
 			"getting_started": "Comment démarrer ?"
+		},
+		"answers": {
+			"cost": "Nos forfaits commencent à partir de 89€/mois, mais le prix final dépend de la taille, du type et de l'activité de votre entreprise. Vous pouvez demander un devis personnalisé via notre formulaire.",
+			"industries": "Non — nous accompagnons des entreprises de différents secteurs, notamment le commerce de détail, l’informatique, le conseil, la fabrication, et bien d’autres.",
+			"tax_compliance": "Oui. Nous nous occupons de la comptabilité, des rapports financiers et de la conformité fiscale pour garantir que votre entreprise respecte pleinement les réglementations.",
+			"scalability": "Absolument. Nos services sont flexibles et évoluent avec votre entreprise au fur et à mesure de sa croissance.",
+			"getting_started": "Il vous suffit de remplir notre formulaire pour recevoir une offre personnalisée, et notre équipe vous accompagnera tout au long du processus d’intégration."
 		}
 	},
 	"contact": {

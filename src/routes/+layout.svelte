@@ -1,5 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
+	import ToastManager from '$lib/components/ToastManager.svelte';
 	import './app.css';
 	let { children } = $props();
 </script>
@@ -9,3 +10,5 @@
 </svelte:head>
 
 {@render children?.()}
+
+<ToastManager />
