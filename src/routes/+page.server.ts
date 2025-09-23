@@ -10,7 +10,11 @@ const contactFormSchema = z.object({
 	email: z.string().email('error.auth.invalid_email'),
 	full_name: z.string().min(2, 'error.auth.full_name').max(100, 'error.auth.full_name_max'),
 	phone: z.string().min(10, 'error.auth.phone').max(15, 'error.auth.phone_max'),
-	message: z.string().min(5, 'error.auth.message').max(1000, 'error.auth.message_max')
+	message: z
+		.string()
+		.max(1000, 'error.auth.message_max')
+		.min(5, 'error.auth.message') // still runs only if value exists
+		.optional()
 });
 
 

@@ -163,6 +163,7 @@
 
 			<div class="space-y-4">
 				<button
+					onclick={() => window.open('https://cal.com/charles-martin-hpuy6l/30min', '_blank')}
 					class="group w-full bg-black text-white py-4 px-6 rounded-lg text-lg font-medium
 	       active:bg-[#292929] disabled:bg-[#CECECE] disabled:text-[#959595]
 	       transition-colors font-dm-mono cursor-pointer flex items-center justify-center gap-2 overflow-hidden"

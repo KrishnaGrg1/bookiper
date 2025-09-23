@@ -238,18 +238,10 @@
 <main class="overflow-x-hidden">
 	<!-- Hero Section -->
 	<section id="home" class="relative bg-[#111111] flex items-center sm:pt-0 pt-12">
-		<!-- Background Gradients -->
-		<div
-			class="absolute top-32 right-4 w-60 h-60 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full opacity-60"
-			style="background: linear-gradient(180deg, rgba(255, 123, 202, 1) 0%, rgba(255, 197, 111, 0.46) 100%); filter: blur(100px);"
-		></div>
-		<div
-			class="absolute top-20 right-2 w-48 h-48 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full opacity-40"
-			style="background: linear-gradient(180deg, rgba(242, 47, 176, 1) 0%, rgba(245, 138, 37, 0) 100%, rgba(112, 97, 163, 1) 100%); filter: blur(50px);"
-		></div>
-
 		<div class="container mx-auto lg:px-8 sm:pt-0 pt-10">
-			<div class="grid lg:grid-cols-[60%_40%] gap-8 lg:gap-16 items-center min-h-[80vh] mt-10">
+			<div
+				class="grid lg:grid-cols-[60%_40%] gap-8 lg:gap-16 items-center min-h-[80vh] mt-10 relative"
+			>
 				<!-- Hero Content -->
 				<div class="space-y-8 z-10">
 					<div class="space-y-6">
@@ -262,13 +254,13 @@
 							{$t('home.hero.subtitle')}
 						</p>
 					</div>
-
 					<div class="space-y-4 max-w-lg">
 						<button
+							onclick={() => window.open('https://bookiper.lexflow.fr', '_blank')}
 							class="group bg-[#edff8c] text-black px-8 py-4 rounded-lg text-lg sm:text-xl font-medium
-  hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3]
-  disabled:text-[#777777] disabled:cursor-not-allowed transition-colors
-  w-full cursor-pointer flex items-center justify-center gap-2 font-dm-mono h-[50px]"
+hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3]
+disabled:text-[#777777] disabled:cursor-not-allowed transition-colors
+w-full cursor-pointer flex items-center justify-center gap-2 font-dm-mono h-[50px]"
 							aria-label={$t('home.hero.cta_primary')}
 						>
 							<ArrowRight
@@ -278,7 +270,6 @@
 								{$t('home.hero.cta_primary')}
 							</span>
 						</button>
-
 						<div
 							class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-lg"
 						>
@@ -293,13 +284,31 @@
 					</div>
 				</div>
 
-				<!-- Hero Image -->
+				<!-- Hero Image with Background Gradients -->
 				<div class="flex justify-center lg:justify-end">
-					<img
-						src="/images/hero.png"
-						alt="Professional woman"
-						class="w-64 h-auto md:w-80 lg:w-96 xl:w-[414px] rounded-lg object-cover"
-					/>
+					<!-- Stack container for image and gradients -->
+					<div class="relative w-fit">
+						<!-- Gradient Background 1 -->
+						<div
+							class="w-60 h-60 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full opacity-60
+			       bg-gradient-to-b from-[#FF7BCA] to-[#FFC56F]/50 blur-[100px] z-0
+			       absolute top-12 left-12"
+						></div>
+
+						<!-- Gradient Background 2 -->
+						<div
+							class="w-48 h-48 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full opacity-40
+			       bg-gradient-to-b from-[#F22FB0] to-[#F58A25] blur-[50px] z-0
+			       absolute top-4 left-20"
+						></div>
+
+						<!-- Image sits above gradients -->
+						<img
+							src="/images/hero.png"
+							alt="Professional woman"
+							class="relative z-10 w-64 h-auto md:w-80 lg:w-96 xl:w-[414px] rounded-lg object-cover"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -347,7 +356,7 @@
 
 						<div class="space-y-4">
 							<h3
-								class="text-[#fafafa] text-xl md:text-[24px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
+								class="text-[#fafafa] text-xl md:text-[28px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
 							>
 								{$t('home.services.service_1.title')}
 							</h3>
@@ -369,7 +378,7 @@
 						/>
 						<div class="space-y-4">
 							<h3
-								class="text-[#fafafa] text-xl md:text-[24px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
+								class="text-[#fafafa] text-xl md:text-[28px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
 							>
 								{$t('home.services.service_2.title')}
 							</h3>
@@ -391,7 +400,7 @@
 						/>
 						<div class="space-y-4">
 							<h3
-								class="text-[#fafafa] text-xl md:text-[24px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
+								class="text-[#fafafa] text-xl md:text-[28px] font-bold leading-tight font-satoshi transition-colors duration-300 group-hover:text-[#EEFF8C]"
 							>
 								{$t('home.services.service_3.title')}
 							</h3>
@@ -413,7 +422,7 @@
 				<!-- Section Header -->
 				<div class="space-y-6">
 					<h2
-						class="text-3xl md:text-4xl lg:text-5xl font-bold text-black font-satoshi"
+						class="text-3xl md:text-[40px] font-bold text-black font-satoshi"
 						style="letter-spacing: 1.5px;"
 					>
 						{$t('home.why_bookiper.title')}
@@ -430,7 +439,10 @@
 							<div class="flex gap-6">
 								<div class="text-black text-2xl font-bold flex-shrink-0 font-satoshi">/01</div>
 								<div class="space-y-2">
-									<h3 class="text-black text-xl font-bold" style="letter-spacing: 0.02em;">
+									<h3
+										class="text-black font-satoshi text-xl font-bold"
+										style="letter-spacing: 0.02em;"
+									>
 										{$t('home.why_bookiper.feature_1.title')}
 									</h3>
 									<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
@@ -443,7 +455,10 @@
 							<div class="flex gap-6">
 								<div class="text-black text-2xl font-bold flex-shrink-0 font-satoshi">/02</div>
 								<div class="space-y-2">
-									<h3 class="text-black text-xl font-bold" style="letter-spacing: 0.02em;">
+									<h3
+										class="text-black font-satoshi text-xl font-bold"
+										style="letter-spacing: 0.02em;"
+									>
 										{$t('home.why_bookiper.feature_2.title')}
 									</h3>
 									<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
@@ -526,7 +541,7 @@ transition-all duration-500 ease-out"
 			<!-- Section Header -->
 			<div class="text-center mb-16 max-w-4xl mx-auto">
 				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6 font-satoshi"
+					class="text-3xl md:text-[40px] font-bold text-black mb-6 font-satoshi"
 					style="letter-spacing: 1.5px;"
 				>
 					{$t('home.team.title')}
@@ -551,7 +566,10 @@ transition-all duration-500 ease-out"
 						<h3 class="text-black text-xl font-bold font-satoshi" style="letter-spacing: 0.02em;">
 							Olena Kovalchuk
 						</h3>
-						<p class="text-[#7e7e7e] text-base font-dm-sans" style="letter-spacing: 1px;">
+						<p
+							class="text-[#7e7e7e] font-light text-base font-dm-sans"
+							style="letter-spacing: 1px;"
+						>
 							{$t('home.team.member_1.position')}
 						</p>
 						<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
@@ -571,7 +589,10 @@ transition-all duration-500 ease-out"
 						<h3 class="text-black text-xl font-bold font-satoshi" style="letter-spacing: 0.02em;">
 							Andriy Melnyk
 						</h3>
-						<p class="text-[#7e7e7e] text-base font-dm-sans" style="letter-spacing: 1px;">
+						<p
+							class="text-[#7e7e7e] font-light text-base font-dm-sans"
+							style="letter-spacing: 1px;"
+						>
 							{$t('home.team.member_2.position')}
 						</p>
 						<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
@@ -593,7 +614,10 @@ transition-all duration-500 ease-out"
 						<h3 class="text-black text-xl font-bold font-satoshi" style="letter-spacing: 0.02em;">
 							Iryna Shevchenko
 						</h3>
-						<p class="text-[#7e7e7e] text-base font-dm-sans" style="letter-spacing: 1px;">
+						<p
+							class="text-[#7e7e7e] font-light text-base font-dm-sans"
+							style="letter-spacing: 1px;"
+						>
 							{$t('home.team.member_3.position')}
 						</p>
 						<p class="text-black text-base font-dm-sans" style="letter-spacing: 1px;">
@@ -611,7 +635,7 @@ transition-all duration-500 ease-out"
 			<!-- Section Header -->
 			<div class="text-center mb-16 max-w-4xl mx-auto">
 				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6 font-satoshi"
+					class="text-3xl md:text-[40px] font-bold text-black mb-6 font-satoshi"
 					style="letter-spacing: 1.5px;"
 				>
 					{$t('home.testimonials.title')}
@@ -631,15 +655,16 @@ transition-all duration-500 ease-out"
 		<div class="container mx-auto px-4 lg:px-8">
 			<!-- Section Header -->
 			<div class="text-center mb-16 max-w-4xl mx-auto">
-				<h2
-					class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#fafafa] mb-6 font-satoshi"
-					style="letter-spacing: 1.5px;"
-				>
-					{$t('home.pricing.title')}
-				</h2>
-				<p class="text-lg md:text-xl text-[#fafafa] font-dm-sans" style="letter-spacing: 1px;">
-					{$t('home.pricing.subtitle')}
-				</p>
+				<div class="flex flex-col items-center justify-center max-w-[789px] mx-auto">
+					<h2
+						class="text-3xl md:text-[40px] font-bold text-[#fafafa] mb-6 font-satoshi tracking-[1.5px]"
+					>
+						{$t('home.pricing.title')}
+					</h2>
+					<p class="text-lg md:text-xl text-[#fafafa] font-dm-sans tracking-[1px]">
+						{$t('home.pricing.subtitle')}
+					</p>
+				</div>
 			</div>
 
 			<!-- Pricing Content -->
@@ -735,9 +760,9 @@ transition-all duration-500 ease-out"
 	<!-- Contact Section -->
 	<section id="contact" class="bg-[#f4f4f4] py-20">
 		<div class="container mx-auto px-4 lg:px-8">
-			<div class="grid lg:grid-cols-[45%_55%] gap-10 items-start max-w-7xl mx-auto">
+			<div class="grid lg:grid-cols-[45%_55%] gap-10 items-center md:items-start max-w-7xl mx-auto">
 				<!-- Contact Info -->
-				<div class="space-y-6">
+				<div class="space-y-6 text-center md:text-left">
 					<h2 class="text-[40px] font-bold text-black font-satoshi" style=" letter-spacing: 1.5px;">
 						{$t('home.contact.title')}
 					</h2>

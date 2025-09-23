@@ -1,12 +1,12 @@
 <script>
 	// Replace this array with your actual company data
 	const companies = [
-		{ name: 'Company 1', url: 'none' },
-		{ name: 'Company 2', url: 'none' },
-		{ name: 'Company 3', url: 'none' },
-		{ name: 'Company 4', url: 'none' },
-		{ name: 'Company 5', url: 'none' },
-		{ name: 'Company 6', url: 'none' }
+		{ name: 'CoVet', img: '/images/CoVet-Logo-hz_ko.avif' },
+		{ name: 'Skyline Innovation', img: '/images/skylineInovation.jpeg' },
+		{ name: 'Immobilier', img: '/images/immobilier.png' },
+		{ name: 'Yucheng', img: '/images/yucheng.png' },
+		{ name: 'Huafang', img: '/images/huafang.png' },
+		{ name: 'Maxresdefault', img: '/images/maxresdefault.jpg' }
 	];
 </script>
 
@@ -17,34 +17,29 @@
 		<!-- First set of logos -->
 		<div class="flex gap-6 items-center flex-shrink-0">
 			{#each companies as company}
-				<a
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:opacity-70 transition-opacity cursor-pointer"
-					aria-label={`Visit ${company.name} website`}
-				>
-					<div class="bg-[#aaaaaa] rounded-xl h-12 w-32 flex items-center justify-center">
-						<!-- <span>{company.name}</span> -->
-						<!-- <img src="" alt="Professional woman" class="w-32 h-12 object-contain" /> -->
-					</div>
-				</a>
+				<div class=" rounded-xl h-12 w-32 flex items-center justify-center">
+					<img
+						src={company.img}
+						class="min-w-[8rem] h-12 object-contain"
+						alt={company.name}
+						loading="lazy"
+					/>
+				</div>
 			{/each}
 		</div>
 
 		<!-- Duplicate set for seamless loop -->
 		<div class="flex gap-6 items-center flex-shrink-0">
 			{#each companies as company}
-				<a
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:opacity-70 transition-opacity cursor-pointer"
-					aria-label={`Visit ${company.name} website`}
-				>
-					<div class="bg-[#aaaaaa] rounded-xl h-12 w-32 flex items-center justify-center">
-						<!-- <span>{company.name}</span>
-						<img src="" alt="" /> -->
-					</div>
-				</a>
+				<div class=" rounded-xl h-12 w-32 flex items-center justify-center">
+					<!-- <span>{company.name}</span> -->
+					<img
+						src={company.img}
+						alt={company.name}
+						class="min-w-[8rem] h-12 object-contain"
+						loading="lazy"
+					/>
+				</div>
 			{/each}
 		</div>
 	</div>

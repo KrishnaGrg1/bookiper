@@ -95,7 +95,7 @@
 						<p
 							class="text-xl font-dm-sans"
 							class:text-[#fafafa]={$activeStep === step}
-							class:text-[#7e7e7e]={$activeStep !== step}
+							class:text-[#7E7E7E]={$activeStep !== step}
 							style="letter-spacing: 1px;"
 						>
 							{$t(`home.process.${step}.description`)}
@@ -103,6 +103,7 @@
 
 						{#if step === 'step_5'}
 							<button
+								onclick={() => window.open('https://cal.com/charles-martin-hpuy6l/30min', '_blank')}
 								class="group bg-[#edff8c] text-black px-8 py-3 rounded-lg text-xl font-medium
          hover:bg-[#E9FF73] active:bg-[#DFFF36] disabled:bg-[#F3F6E3]
          disabled:text-[#777777] disabled:cursor-not-allowed transition-colors
