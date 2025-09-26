@@ -1,0 +1,220 @@
+{
+	"brand": "BOOKIPER",
+	"menu": {
+		"home": "Startseite",
+		"how_we_work": "So arbeiten wir",
+		"services": "Dienstleistungen",
+		"about": "Über uns",
+		"pricing": "Preise",
+		"contact": "Kontakt"
+	},
+	"calculate_price": "Preis berechnen",
+	"hero": {
+		"title": "Ihr vertrauensvoller Partner für Finanzen und Compliance in Frankreich",
+		"subtitle": "Professionelle Buchhaltungs- und Rechnungslegungsdienste, damit Ihr Unternehmen organisiert, gesetzeskonform und finanziell gesund bleibt – ganz ohne Stress.",
+		"cta_primary": "Gründen Sie Ihr Unternehmen in Frankreich",
+		"trust_text": "Mehr als 4000 Kunden vertrauen uns bereits",
+		"rating_text": "4,9 bei Google"
+	},
+	"trusted_companies": {
+		"title": "Vertraut von international wachsenden Unternehmen"
+	},
+	"process": {
+		"title": "Einfache Schritte zur stressfreien Buchhaltung",
+		"subtitle": "Die Verwaltung Ihrer Unternehmensfinanzen muss nicht kompliziert sein. Mit Bookiper haben wir den Prozess klar und einfach gestaltet, damit Sie gesetzeskonform, organisiert und wachstumsorientiert bleiben.",
+		"step_1": {
+			"title": "Kostenlose Beratung buchen",
+			"description": "Erzählen Sie uns von Ihren geschäftlichen Anforderungen, Herausforderungen und Zielen. Wir zeigen Ihnen, wie unsere Dienstleistungen Sie am besten unterstützen können."
+		},
+		"step_2": {
+			"title": "Analyse & Empfehlungen",
+			"description": "Unsere Experten überprüfen Ihre aktuelle Buchhaltungssituation und schlagen die besten Lösungen für Sie vor."
+		},
+		"step_3": {
+			"title": "Individueller Buchhaltungsplan",
+			"description": "Wir erstellen ein maßgeschneidertes Dienstleistungspaket, um Ihr Unternehmen gesetzeskonform, organisiert und finanziell stabil zu halten."
+		},
+		"step_4": {
+			"title": "Nahtlose Einführung",
+			"description": "Wir richten die Tools, Prozesse und Kommunikation ein, damit alles von Anfang an reibungslos läuft."
+		},
+		"step_5": {
+			"title": "Laufende Unterstützung & Einblicke",
+			"description": "Erhalten Sie regelmäßige Berichte, Updates und proaktive Ratschläge, um jederzeit den Überblick zu behalten."
+		},
+		"cta": "Jetzt beraten lassen"
+	},
+	"services": {
+		"title": "Unsere Dienstleistungen",
+		"subtitle": "Intelligente Buchhaltungslösungen für Ihr Unternehmen",
+		"service_1": {
+			"title": "Buchhaltung & Compliance in Europa",
+			"description": "Genaue Aufzeichnungen, pünktliche Berichte und vollständige Einhaltung lokaler Vorschriften – damit Sie sich keine Sorgen über Fristen machen müssen."
+		},
+		"service_2": {
+			"title": "Finanzberichte & Einblicke",
+			"description": "Klare, leicht verständliche Berichte und datengestützte Einblicke für bessere Geschäftsentscheidungen."
+		},
+		"service_3": {
+			"title": "Beratung & laufende Unterstützung",
+			"description": "Fachkundige Beratung zu Steuerplanung, Finanzstrategie und alltäglichen Entscheidungen für nachhaltiges Wachstum."
+		}
+	},
+	"why_bookiper": {
+		"title": "Warum BOOKIPER?",
+		"subtitle": "Intelligente Buchhaltungslösungen für Ihr Unternehmen",
+		"feature_1": {
+			"title": "Vertrauenswürdige Expertise",
+			"description": "Unsere zertifizierten Buchhalter verfügen über jahrelange Erfahrung, um Ihr Unternehmen gesetzeskonform und finanziell sicher zu halten."
+		},
+		"feature_2": {
+			"title": "Individuelle Lösungen",
+			"description": "Wir glauben nicht an Einheitslösungen. Jeder Service wird an Ihre spezifischen Geschäftsbedürfnisse angepasst."
+		},
+		"feature_3": {
+			"title": "Stressfreier Prozess",
+			"description": "Von der Einrichtung bis zur laufenden Unterstützung – wir machen Buchhaltung einfach, damit Sie sich auf Ihr Geschäft konzentrieren können."
+		},
+		"feature_4": {
+			"title": "Proaktive Einblicke",
+			"description": "Mehr als nur Buchhaltung – wir bieten umsetzbare Ratschläge und Voraussicht, damit Ihr Unternehmen wächst."
+		},
+		"cta": "Kostenlose Beratung sichern"
+	},
+	"team": {
+		"title": "Lernen Sie unser Team kennen",
+		"subtitle": "Unsere Stärke liegt in der Expertise und dem Engagement unseres Teams. Jedes Mitglied bringt einzigartige Fähigkeiten mit, um sicherzustellen, dass Ihr Unternehmen finanziell gesund, gesetzeskonform und wachstumsbereit bleibt.",
+		"member_1": {
+			"name": "Olena Kovalchuk",
+			"position": "Senior Buchhalterin",
+			"description": "Olena sorgt mit höchster Genauigkeit dafür, dass Ihre Unterlagen stets korrekt und gesetzeskonform sind."
+		},
+		"member_2": {
+			"name": "Andriy Melnyk",
+			"position": "Finanzanalyst",
+			"description": "Andriy verwandelt komplexe Zahlen in klare Einblicke für bessere geschäftliche Entscheidungen."
+		},
+		"member_3": {
+			"name": "Iryna Shevchenko",
+			"position": "Kundenbetreuerin",
+			"description": "Iryna sorgt dafür, dass sich jeder Kunde unterstützt, informiert und stressfrei fühlt."
+		}
+	},
+	"testimonials": {
+		"title": "Warum unsere Kunden Bookiper lieben",
+		"subtitle": "Unsere Kunden schätzen Bookiper wegen der zuverlässigen Unterstützung, klaren Einblicke und stressfreien Buchhaltung, die ihrem Unternehmen beim Wachsen hilft.",
+		"testimonial_1": {
+			"text": "Bookiper hat uns den Stress bei der Buchhaltung komplett abgenommen. Durch ihre Genauigkeit und proaktive Unterstützung kann ich mich auf das Wachstum meines Unternehmens konzentrieren.",
+			"author": "Michael Turner",
+			"company": "Gründer von Turner Consulting"
+		},
+		"testimonial_2": {
+			"text": "Das Team von Bookiper ist professionell, zuverlässig und immer erreichbar, um meine Fragen zu beantworten. Ihre Finanzberichte sind klar und geben mir das nötige Vertrauen für wichtige Entscheidungen.",
+			"author": "Frances Swann",
+			"company": "CEO von GreenLeaf Marketing"
+		},
+		"testimonial_3": {
+			"text": "Die Zusammenarbeit mit Bookiper fühlt sich an wie eine eigene Finanzabteilung. Sie verstehen unser Geschäft und bieten wertvolle Einblicke, die weit über einfache Buchhaltung hinausgehen.",
+			"author": "Mary Freund",
+			"company": "Betriebsleiterin bei TechNova"
+		}
+	},
+	"pricing": {
+		"title": "Klar, flexibel und auf Ihr Unternehmen zugeschnitten",
+		"subtitle": "Buchhaltung muss nicht teuer sein. Mit Bookiper erhalten Sie zuverlässige, stressfreie Finanzunterstützung.",
+		"plan_title": "Ihr Buchhaltungsformular",
+		"plan_price": "89€/Monat",
+		"features": {
+			"bookkeeping": "Professionelle Buchhaltung & Compliance",
+			"reports": "Monatliche Finanzberichte & Einblicke",
+			"support": "Persönliche Expertenunterstützung",
+			"onboarding": "Stressfreie Einrichtung & Einführung"
+		},
+		"cta": "Kostenlose Beratung sichern",
+		"disclaimer": "*Der endgültige Preis hängt von der Größe und Aktivität Ihres Unternehmens ab – füllen Sie das Formular aus, um ein individuelles Angebot zu erhalten.",
+		"calculator": {
+			"title": "Preis berechnen",
+			"subtitle": "Erzählen Sie uns von Ihrem Unternehmen – wir erstellen einen individuellen Buchhaltungsplan für Sie.",
+			"company_name": {
+				"placeholder": "Firmenname",
+				"help": "Geben Sie den eingetragenen Namen Ihres Unternehmens wie in offiziellen Dokumenten an."
+			},
+			"associates": {
+				"placeholder": "Anzahl der Mitarbeitenden",
+				"help": "Geben Sie die Gesamtanzahl der in Ihrem Unternehmen tätigen Personen an – inklusive Mitarbeiter und Partner."
+			},
+			"turnover": {
+				"placeholder": "Jahresumsatz",
+				"help": "Geben Sie den ungefähren jährlichen Gesamtumsatz Ihres Unternehmens an – vor Abzug der Kosten."
+			},
+			"submit": "Mein Angebot erhalten"
+		},
+		"calculated": {
+			"title": "Berechnet",
+			"price_label": "Ihr geschätzter monatlicher Preis:",
+			"note": "Dies ist eine erste Schätzung. Für eine detaillierte Aufstellung empfehlen wir ein kurzes Gespräch mit unserem Berater.",
+			"schedule_call": "Gespräch vereinbaren",
+			"recalculate": "Neu berechnen"
+		}
+	},
+	"faq": {
+		"title": "Antworten auf häufige Fragen zu unseren Dienstleistungen",
+		"subtitle": "Die Wahl eines Buchhaltungspartners ist eine wichtige Entscheidung. Hier finden Sie schnelle Antworten, wie Bookiper Ihr Unternehmen unterstützen kann.",
+		"questions": {
+			"cost": "Was kostet Ihr Service?",
+			"industries": "Arbeiten Sie nur mit bestimmten Branchen?",
+			"tax_compliance": "Übernehmen Sie auch die Steuer-Compliance?",
+			"scalability": "Was passiert, wenn mein Unternehmen wächst?",
+			"getting_started": "Wie beginne ich?"
+		},
+		"answers": {
+			"cost": "Unsere Preise beginnen bei 89€/Monat. Der endgültige Preis hängt von Unternehmensgröße, Typ und Tätigkeit ab. Fordern Sie ein individuelles Angebot über unser Formular an.",
+			"industries": "Nein – wir betreuen Unternehmen aus verschiedenen Branchen, z. B. Einzelhandel, IT, Beratung, Produktion und mehr.",
+			"tax_compliance": "Ja. Wir übernehmen Buchhaltung, Finanzberichte und Steuer-Compliance, damit Ihr Unternehmen gesetzeskonform bleibt.",
+			"scalability": "Absolut. Unsere Dienstleistungen sind flexibel und wachsen mit Ihrem Unternehmen mit.",
+			"getting_started": "Füllen Sie einfach unser Formular aus – unser Team begleitet Sie durch den gesamten Onboarding-Prozess."
+		}
+	},
+	"contact": {
+		"title": "Lassen Sie uns über Ihre Geschäftsbedürfnisse sprechen",
+		"subtitle": "Fragen zu Buchhaltung, Compliance oder Finanzmanagement? Füllen Sie das Formular aus – unsere Experten melden sich mit klaren Antworten und einem maßgeschneiderten Plan für Ihr Unternehmen.",
+		"form": {
+			"title": "Kostenlose Beratung erhalten",
+			"subtitle": "In nur 30 Minuten erhalten Sie Klarheit über Ihre Buchhaltungsbedürfnisse, erfahren, wie Bookiper Sie unterstützen kann, und bekommen konkrete nächste Schritte – völlig kostenlos.",
+			"full_name": {
+				"placeholder": "Vollständiger Name*",
+				"help": "Bitte geben Sie Ihren Vor- und Nachnamen an, wie wir Sie ansprechen dürfen."
+			},
+			"email": {
+				"placeholder": "E-Mail-Adresse*",
+				"help": "Wir verwenden diese, um Ihnen Bestätigungen und weitere Informationen zu senden."
+			},
+			"phone": {
+				"placeholder": "Telefonnummer",
+				"help": "Optional, aber hilfreich für eine schnelle Kontaktaufnahme."
+			},
+			"message": {
+				"placeholder": "Nachricht",
+				"help": "Teilen Sie uns konkrete Anliegen, Fragen oder Details zu Ihren Buchhaltungsbedürfnissen mit."
+			},
+			"submit": "Absenden"
+		},
+		"phone": "Telefon",
+		"email": "E-Mail",
+		"address": "Adresse"
+	},
+	"footer": {
+		"description": "Wir bieten zuverlässige, stressfreie Buchhaltungsservices, die Ihnen Zeit sparen und Sicherheit geben. Entdecken Sie unsere Ressourcen oder kontaktieren Sie unser Team noch heute.",
+		"menu_title": "Menü",
+		"contact_title": "Kontakt",
+		"resources_title": "Ressourcen",
+		"copyright": "© 2025 Bookiper",
+		"privacy_policy": "Datenschutzerklärung",
+		"terms_of_service": "Nutzungsbedingungen"
+	},
+	"resources": {
+		"testimonials": "Kundenmeinungen",
+		"faq": "FAQ",
+		"free_consultation": "Kostenlose Beratung"
+	}
+}

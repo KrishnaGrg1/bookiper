@@ -1,0 +1,13 @@
+{
+	"auth": {
+		"invalid_email": "Por favor, introduce una dirección de correo electrónico válida.",
+		"full_name": "El nombre completo debe tener al menos 2 caracteres.",
+		"full_name_max": "El nombre completo debe tener menos de 100 caracteres.",
+		"phone": "El número de teléfono debe tener al menos 10 dígitos.",
+		"phone_max": "El número de teléfono debe tener menos de 15 dígitos.",
+		"message": "El mensaje debe tener al menos 5 caracteres.",
+		"message_max": "El mensaje debe tener menos de 1000 caracteres.",
+		"required_fields": "Por favor, completa todos los campos obligatorios.",
+		"form_invalid": "Corrige los errores del formulario antes de enviarlo."
+	}
+}

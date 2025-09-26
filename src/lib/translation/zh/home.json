@@ -1,0 +1,220 @@
+{
+	"brand": "BOOKIPER",
+	"menu": {
+		"home": "首页",
+		"how_we_work": "我们的工作方式",
+		"services": "服务",
+		"about": "关于我们",
+		"pricing": "价格",
+		"contact": "联系我们"
+	},
+	"calculate_price": "计算价格",
+	"hero": {
+		"title": "您在法国财务和合规方面值得信赖的合作伙伴",
+		"subtitle": "专业的会计和簿记服务，帮助您的企业保持合规、有序和财务健康——无需压力。",
+		"cta_primary": "在法国创办您的公司",
+		"trust_text": "已有超过4000位客户信赖我们",
+		"rating_text": "Google评分4.9"
+	},
+	"trusted_companies": {
+		"title": "国际快速成长企业的信赖选择"
+	},
+	"process": {
+		"title": "轻松无忧的会计简单步骤",
+		"subtitle": "管理您的企业财务不必复杂。使用Bookiper，我们让流程清晰明了，助您保持合规、有序，专注于业务增长。",
+		"step_1": {
+			"title": "预约免费咨询",
+			"description": "告诉我们您的业务需求、挑战和目标。我们将确定如何最佳支持您。"
+		},
+		"step_2": {
+			"title": "分析与建议",
+			"description": "我们的专家将审查您当前的会计状况，并为您推荐最佳解决方案。"
+		},
+		"step_3": {
+			"title": "定制会计方案",
+			"description": "我们设计个性化的服务套餐，确保您的业务合规、有序且财务稳健。"
+		},
+		"step_4": {
+			"title": "无缝入驻",
+			"description": "我们搭建工具、流程和沟通渠道，确保一切从第一天起顺畅运行。"
+		},
+		"step_5": {
+			"title": "持续支持与洞察",
+			"description": "定期获得报告、更新和前瞻性建议，助您掌控全局，领先变化。"
+		},
+		"cta": "与我们沟通"
+	},
+	"services": {
+		"title": "我们的服务",
+		"subtitle": "为您的业务量身打造的智能会计解决方案",
+		"service_1": {
+			"title": "欧洲簿记与合规",
+			"description": "准确记录、及时报告，全面遵守当地法规——让您无需担心截止日期。"
+		},
+		"service_2": {
+			"title": "财务报告与洞察",
+			"description": "清晰易懂的报告和数据驱动的洞察，指导更聪明的业务决策。"
+		},
+		"service_3": {
+			"title": "咨询与持续支持",
+			"description": "税务规划、财务战略的专家建议，以及日常指导，助力可持续增长。"
+		}
+	},
+	"why_bookiper": {
+		"title": "为什么选择BOOKIPER？",
+		"subtitle": "为您的业务量身打造的智能会计解决方案",
+		"feature_1": {
+			"title": "值得信赖的专业知识",
+			"description": "我们的认证会计师拥有多年经验，确保您的业务合规且财务安全。"
+		},
+		"feature_2": {
+			"title": "定制化解决方案",
+			"description": "我们不信奉一刀切，每项服务均根据您的独特需求定制。"
+		},
+		"feature_3": {
+			"title": "无压力流程",
+			"description": "从设置到持续支持，我们让会计变得简单，让您专注经营业务。"
+		},
+		"feature_4": {
+			"title": "前瞻性洞察",
+			"description": "不仅仅是簿记——我们提供可行建议和前瞻性视角，助力业务成长。"
+		},
+		"cta": "获取免费咨询"
+	},
+	"team": {
+		"title": "团队介绍",
+		"subtitle": "在Bookiper，我们的实力源于团队的专业和奉献。每位成员都带来独特技能，确保您的企业财务健康、合规并准备好成长。",
+		"member_1": {
+			"name": "Olena Kovalchuk",
+			"position": "高级会计师",
+			"description": "专注于准确性和合规性，Olena确保您的记录始终完美无缺。"
+		},
+		"member_2": {
+			"name": "Andriy Melnyk",
+			"position": "财务分析师",
+			"description": "Andriy将复杂数字转化为清晰洞察，支持更明智的业务决策。"
+		},
+		"member_3": {
+			"name": "Iryna Shevchenko",
+			"position": "客户成功经理",
+			"description": "Iryna确保每位客户在每一步都感受到支持、信息透明且无压力。"
+		}
+	},
+	"testimonials": {
+		"title": "看看客户为什么喜欢Bookiper",
+		"subtitle": "我们的客户选择Bookiper，因为我们提供可靠支持、清晰洞察和无压力会计，帮助他们的业务成长。",
+		"testimonial_1": {
+			"text": "Bookiper完全消除了管理账户的压力。他们对细节的关注和主动支持让我能够专注于业务增长，而不用担心数字问题。",
+			"author": "Michael Turner",
+			"company": "Turner Consulting创始人"
+		},
+		"testimonial_2": {
+			"text": "Bookiper团队专业、可靠，随时回答我的问题。他们的财务报告清晰，让我有信心做出重大决策。",
+			"author": "Frances Swann",
+			"company": "GreenLeaf Marketing首席执行官"
+		},
+		"testimonial_3": {
+			"text": "与Bookiper合作就像拥有内部财务部门。他们真正理解我们的业务，提供超越基础会计的洞察。",
+			"author": "Mary Freund",
+			"company": "TechNova运营经理"
+		}
+	},
+	"pricing": {
+		"title": "清晰、灵活，专为您的业务量身定制",
+		"subtitle": "管理您的会计不必昂贵。使用Bookiper，您将获得可靠、无压力的财务支持。",
+		"plan_title": "您的会计方案",
+		"plan_price": "89欧元/月",
+		"features": {
+			"bookkeeping": "专业簿记与合规",
+			"reports": "每月财务报告与洞察",
+			"support": "专属专家支持",
+			"onboarding": "无压力设置与入驻"
+		},
+		"cta": "获取免费咨询",
+		"disclaimer": "*最终价格取决于贵公司的规模和活动，请填写下面的表格以获取个性化报价。",
+		"calculator": {
+			"title": "计算我的价格",
+			"subtitle": "告诉我们您的业务，我们将为您准备量身定制的会计方案。",
+			"company_name": {
+				"placeholder": "公司名称",
+				"help": "请输入您注册的企业名称，与官方文件一致。"
+			},
+			"associates": {
+				"placeholder": "员工人数",
+				"help": "提供公司员工及合伙人的总人数。"
+			},
+			"turnover": {
+				"placeholder": "年营业额",
+				"help": "填写贵公司税前的年度大致收入。"
+			},
+			"submit": "获取报价"
+		},
+		"calculated": {
+			"title": "计算结果",
+			"price_label": "您的预计月费用：",
+			"note": "这只是初步估算。欲了解针对您的业务的详细报价，请预约我们的顾问进行快速通话。",
+			"schedule_call": "预约通话",
+			"recalculate": "重新计算"
+		}
+	},
+	"faq": {
+		"title": "关于我们服务的常见问题解答",
+		"subtitle": "我们知道选择会计合作伙伴是重要决策。以下是一些快速解答，帮助您了解Bookiper如何支持您的业务。",
+		"questions": {
+			"cost": "你们的服务费用是多少？",
+			"industries": "你们只服务特定行业吗？",
+			"tax_compliance": "你们能处理税务合规吗？",
+			"scalability": "如果公司成长，方案可以调整吗？",
+			"getting_started": "如何开始？"
+		},
+		"answers": {
+			"cost": "我们的方案起价为89欧元/月，但最终价格取决于公司的规模、类型和活动。您可以通过我们的表格申请个性化报价。",
+			"industries": "不，我们支持零售、IT、咨询、制造等多个行业的业务。",
+			"tax_compliance": "是的，我们负责簿记、财务报告和税务合规，确保您的业务完全符合规定。",
+			"scalability": "完全可以。我们的服务灵活，可随着业务扩展调整。",
+			"getting_started": "只需填写我们的表格获取个性化报价，我们的团队将引导您完成入驻流程。"
+		}
+	},
+	"contact": {
+		"title": "让我们聊聊您的业务需求",
+		"subtitle": "有关于会计、合规或财务管理的问题？填写表格，我们的专家将与您联系，提供清晰解答和量身定制的计划。",
+		"form": {
+			"title": "获取免费咨询",
+			"subtitle": "仅需30分钟，您将明确会计需求，了解Bookiper如何支持您的业务，并获得实用的下一步建议——全部免费。",
+			"full_name": {
+				"placeholder": "全名*",
+				"help": "请输入您的名字和姓氏，我们将据此称呼您。"
+			},
+			"email": {
+				"placeholder": "电子邮箱*",
+				"help": "我们将用此邮箱发送确认和后续信息。"
+			},
+			"phone": {
+				"placeholder": "电话号码",
+				"help": "可选，但如果需要可帮助我们更快联系您。"
+			},
+			"message": {
+				"placeholder": "留言",
+				"help": "请分享您的具体问题、疑虑或会计需求细节。"
+			},
+			"submit": "发送"
+		},
+		"phone": "电话",
+		"email": "邮箱",
+		"address": "地址"
+	},
+	"footer": {
+		"description": "我们提供可靠、无压力的会计服务，旨在节省您的时间并带来安心。探索我们的资源，或立即联系我们的团队。",
+		"menu_title": "菜单",
+		"contact_title": "联系方式",
+		"resources_title": "资源",
+		"copyright": "© 2025 Bookiper",
+		"privacy_policy": "隐私政策",
+		"terms_of_service": "服务条款"
+	},
+	"resources": {
+		"testimonials": "客户评价",
+		"faq": "常见问题",
+		"free_consultation": "免费咨询"
+	}
+}

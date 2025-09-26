@@ -1,0 +1,13 @@
+{
+	"auth": {
+		"invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+		"full_name": "Der vollständige Name muss mindestens 2 Zeichen lang sein.",
+		"full_name_max": "Der vollständige Name darf nicht länger als 100 Zeichen sein.",
+		"phone": "Die Telefonnummer muss mindestens 10 Ziffern enthalten.",
+		"phone_max": "Die Telefonnummer darf nicht länger als 15 Ziffern sein.",
+		"message": "Die Nachricht muss mindestens 5 Zeichen lang sein.",
+		"message_max": "Die Nachricht darf nicht länger als 1000 Zeichen sein.",
+		"required_fields": "Bitte füllen Sie alle Pflichtfelder aus.",
+		"form_invalid": "Bitte korrigieren Sie die Fehler im Formular, bevor Sie es absenden."
+	}
+}

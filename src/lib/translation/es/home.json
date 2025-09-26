@@ -1,0 +1,220 @@
+{
+	"brand": "BOOKIPER",
+	"menu": {
+		"home": "Inicio",
+		"how_we_work": "Cómo trabajamos",
+		"services": "Servicios",
+		"about": "Sobre nosotros",
+		"pricing": "Precios",
+		"contact": "Contacto"
+	},
+	"calculate_price": "Calcular precio",
+	"hero": {
+		"title": "Tu socio de confianza en finanzas y cumplimiento en Francia",
+		"subtitle": "Servicios expertos de contabilidad y gestión financiera para que tu negocio esté en regla, organizado y financieramente saludable — sin estrés.",
+		"cta_primary": "Inicia tu empresa en Francia",
+		"trust_text": "Más de 4000 clientes ya confían en nosotros",
+		"rating_text": "4,9 en Google"
+	},
+	"trusted_companies": {
+		"title": "Confiado por empresas internacionales en rápido crecimiento"
+	},
+	"process": {
+		"title": "Pasos simples hacia una contabilidad sin estrés",
+		"subtitle": "Gestionar las finanzas de tu empresa no tiene que ser complicado. Con Bookiper, hemos hecho que el proceso sea claro y sencillo para que mantengas el cumplimiento, la organización y te concentres en crecer.",
+		"step_1": {
+			"title": "Reserva una consulta gratuita",
+			"description": "Cuéntanos tus necesidades, desafíos y objetivos empresariales. Identificaremos cómo nuestros servicios pueden apoyarte mejor."
+		},
+		"step_2": {
+			"title": "Análisis y recomendaciones",
+			"description": "Nuestros expertos revisan tu situación contable actual y destacan las mejores soluciones para ti."
+		},
+		"step_3": {
+			"title": "Plan contable personalizado",
+			"description": "Diseñamos un paquete de servicios a medida para mantener tu empresa conforme, organizada y financieramente estable."
+		},
+		"step_4": {
+			"title": "Integración sin problemas",
+			"description": "Configuramos las herramientas, procesos y la comunicación para que todo funcione sin problemas desde el primer día."
+		},
+		"step_5": {
+			"title": "Soporte continuo y perspectivas",
+			"description": "Recibe informes regulares, actualizaciones y consejos proactivos para estar en control y adelantarte a los cambios."
+		},
+		"cta": "Habla con nosotros"
+	},
+	"services": {
+		"title": "Nuestros servicios",
+		"subtitle": "Soluciones contables inteligentes diseñadas para tu empresa",
+		"service_1": {
+			"title": "Contabilidad y cumplimiento en Europa",
+			"description": "Registros precisos, informes puntuales y cumplimiento total con las normativas locales – para que nunca te preocupes por los plazos."
+		},
+		"service_2": {
+			"title": "Informes financieros y perspectivas",
+			"description": "Informes claros, fáciles de entender y perspectivas basadas en datos para guiar decisiones de negocio más inteligentes."
+		},
+		"service_3": {
+			"title": "Asesoría y apoyo continuo",
+			"description": "Consejos expertos en planificación fiscal, estrategia financiera y orientación diaria para un crecimiento sostenible."
+		}
+	},
+	"why_bookiper": {
+		"title": "¿Por qué BOOKIPER?",
+		"subtitle": "Soluciones contables inteligentes diseñadas para tu empresa",
+		"feature_1": {
+			"title": "Experiencia en la que puedes confiar",
+			"description": "Nuestros contadores certificados tienen años de experiencia manteniendo tu empresa conforme y financieramente segura."
+		},
+		"feature_2": {
+			"title": "Soluciones personalizadas",
+			"description": "No creemos en soluciones genéricas. Cada servicio se adapta a tus necesidades empresariales únicas."
+		},
+		"feature_3": {
+			"title": "Proceso sin estrés",
+			"description": "Desde la configuración hasta el soporte continuo, hacemos que la contabilidad sea sencilla para que puedas concentrarte en dirigir tu negocio."
+		},
+		"feature_4": {
+			"title": "Perspectivas proactivas",
+			"description": "Más que solo contabilidad, ofrecemos consejos prácticos y previsión para ayudar a que tu negocio crezca."
+		},
+		"cta": "Obtén tu consulta gratuita"
+	},
+	"team": {
+		"title": "Conoce al equipo",
+		"subtitle": "En Bookiper, nuestra fortaleza radica en la experiencia y dedicación de nuestro equipo. Cada miembro aporta habilidades únicas para asegurar que tu empresa se mantenga financieramente saludable, conformada y lista para crecer.",
+		"member_1": {
+			"name": "Olena Kovalchuk",
+			"position": "Contadora Senior",
+			"description": "Olena se enfoca en la precisión y el cumplimiento; asegura que tus registros siempre estén en perfecto orden."
+		},
+		"member_2": {
+			"name": "Andriy Melnyk",
+			"position": "Analista Financiero",
+			"description": "Andriy traduce números complejos en ideas claras que respaldan decisiones empresariales más inteligentes."
+		},
+		"member_3": {
+			"name": "Iryna Shevchenko",
+			"position": "Gerente de Éxito del Cliente",
+			"description": "Iryna se asegura de que cada cliente se sienta apoyado, informado y sin estrés en cada paso."
+		}
+	},
+	"testimonials": {
+		"title": "Por qué nuestros clientes aman Bookiper",
+		"subtitle": "Nuestros clientes eligen Bookiper por apoyo confiable, ideas claras y contabilidad sin estrés que ayuda a que sus negocios crezcan.",
+		"testimonial_1": {
+			"text": "Bookiper ha eliminado por completo el estrés de gestionar nuestras cuentas. Su atención al detalle y apoyo proactivo me permiten concentrarme en hacer crecer mi negocio en lugar de preocuparme por los números.",
+			"author": "Michael Turner",
+			"company": "Fundador de Turner Consulting"
+		},
+		"testimonial_2": {
+			"text": "El equipo de Bookiper es profesional, confiable y siempre disponible para responder mis preguntas. Sus informes financieros son claros y me dan la confianza que necesito para tomar decisiones importantes.",
+			"author": "Frances Swann",
+			"company": "CEO de GreenLeaf Marketing"
+		},
+		"testimonial_3": {
+			"text": "Trabajar con Bookiper se siente como tener un departamento financiero interno. Realmente entienden nuestro negocio y brindan perspectivas que van más allá de la contabilidad básica.",
+			"author": "Mary Freund",
+			"company": "Gerente de Operaciones en TechNova"
+		}
+	},
+	"pricing": {
+		"title": "Claro, flexible y adaptado a tu empresa",
+		"subtitle": "Gestionar tu contabilidad no tiene que ser caro. Con Bookiper obtienes apoyo financiero confiable y sin estrés.",
+		"plan_title": "Tu plan contable",
+		"plan_price": "89€/mes",
+		"features": {
+			"bookkeeping": "Contabilidad profesional y cumplimiento",
+			"reports": "Informes financieros mensuales y perspectivas",
+			"support": "Soporte experto dedicado",
+			"onboarding": "Configuración e incorporación sin estrés"
+		},
+		"cta": "Consigue tu consulta gratuita",
+		"disclaimer": "*El precio final depende del tamaño y la actividad de tu empresa – completa el formulario abajo para recibir una oferta personalizada.",
+		"calculator": {
+			"title": "Calcula mi precio",
+			"subtitle": "Cuéntanos sobre tu empresa, y prepararemos un plan contable personalizado diseñado para tus necesidades.",
+			"company_name": {
+				"placeholder": "Nombre de la empresa",
+				"help": "Introduce el nombre registrado de tu empresa como aparece en los documentos oficiales."
+			},
+			"associates": {
+				"placeholder": "Número de asociados",
+				"help": "Indica el número total de personas trabajando en tu empresa, incluyendo empleados y socios."
+			},
+			"turnover": {
+				"placeholder": "Facturación anual",
+				"help": "Indica tu facturación anual aproximada antes de gastos."
+			},
+			"submit": "Obtener mi presupuesto"
+		},
+		"calculated": {
+			"title": "Calculado",
+			"price_label": "Tu precio mensual estimado:",
+			"note": "Esta es una estimación inicial. Para un desglose detallado adaptado a tu empresa, agenda una llamada con nuestro asesor.",
+			"schedule_call": "Agendar llamada",
+			"recalculate": "Volver a calcular"
+		}
+	},
+	"faq": {
+		"title": "Respuestas a las preguntas más comunes sobre nuestros servicios",
+		"subtitle": "Sabemos que elegir un socio de contabilidad es una decisión importante. Aquí tienes algunas respuestas rápidas para entender cómo Bookiper puede apoyar tu negocio.",
+		"questions": {
+			"cost": "¿Cuánto cuesta su servicio?",
+			"industries": "¿Trabajan solo con ciertas industrias?",
+			"tax_compliance": "¿Pueden encargarse también del cumplimiento fiscal?",
+			"scalability": "¿Y si mi empresa crece – se puede ajustar el plan?",
+			"getting_started": "¿Cómo empiezo?"
+		},
+		"answers": {
+			"cost": "Nuestros planes comienzan desde 89€/mes, pero el precio final depende del tamaño, tipo y actividad de tu empresa. Puedes solicitar una oferta personalizada mediante nuestro formulario.",
+			"industries": "No – apoyamos negocios de diferentes sectores, incluyendo retail, IT, consultoría, manufactura y más.",
+			"tax_compliance": "Sí. Nos encargamos de la contabilidad, los informes financieros y el cumplimiento fiscal para mantener tu empresa alineada con las regulaciones.",
+			"scalability": "Absolutamente. Nuestros servicios son flexibles y crecen conforme lo hace tu empresa.",
+			"getting_started": "Simplemente completa nuestro formulario para una oferta personalizada, y nuestro equipo te guiará durante el proceso de incorporación."
+		}
+	},
+	"contact": {
+		"title": "Hablemos de las necesidades de tu empresa",
+		"subtitle": "¿Tienes preguntas sobre contabilidad, cumplimiento o gestión financiera? Completa el formulario y nuestros expertos se pondrán en contacto para darte respuestas claras y un plan hecho a la medida para tu empresa.",
+		"form": {
+			"title": "Consigue tu consulta gratuita",
+			"subtitle": "En solo 30 minutos obtendrás claridad sobre tus necesidades contables, conocerás cómo Bookiper puede apoyarte y recibirás los próximos pasos prácticos – todo sin coste alguno.",
+			"full_name": {
+				"placeholder": "Nombre completo*",
+				"help": "Por favor ingresa tu nombre y apellido como te gustaría que te llamemos."
+			},
+			"email": {
+				"placeholder": "Correo electrónico*",
+				"help": "Lo usaremos para enviarte confirmación e información de seguimiento."
+			},
+			"phone": {
+				"placeholder": "Número de teléfono",
+				"help": "Opcional, pero nos ayuda a contactarte más rápido si es necesario."
+			},
+			"message": {
+				"placeholder": "Mensaje",
+				"help": "Comparte cualquier preocupación específica, pregunta o detalle sobre tus necesidades contables."
+			},
+			"submit": "Enviar"
+		},
+		"phone": "Teléfono",
+		"email": "Correo electrónico",
+		"address": "Dirección"
+	},
+	"footer": {
+		"description": "Ofrecemos servicios de contabilidad confiables y sin estrés diseñados para ahorrarte tiempo y brindarte tranquilidad. Explora nuestros recursos o contacta a nuestro equipo hoy mismo.",
+		"menu_title": "Menú",
+		"contact_title": "Contacto",
+		"resources_title": "Recursos",
+		"copyright": "© 2025 Bookiper",
+		"privacy_policy": "Política de privacidad",
+		"terms_of_service": "Términos de servicio"
+	},
+	"resources": {
+		"testimonials": "Testimonios",
+		"faq": "Preguntas frecuentes",
+		"free_consultation": "Consulta gratuita"
+	}
+}

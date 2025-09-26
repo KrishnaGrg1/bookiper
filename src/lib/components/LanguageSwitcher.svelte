@@ -20,7 +20,15 @@
 
 	const languages: Language[] = [
 		{ code: 'en', name: 'English', flag: '🇺🇸' },
-		{ code: 'fr', name: 'Français', flag: '🇫🇷' }
+		{ code: 'fr', name: 'Français', flag: '🇫🇷' },
+		{ code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+		{ code: 'es', name: 'Español', flag: '🇪🇸' },
+		{ code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
+		{ code: 'it', name: 'Italiano', flag: '🇮🇹' },
+		{ code: 'pt', name: 'Português', flag: '🇧🇷' },
+		{ code: 'ru', name: 'Русский', flag: '🇷🇺' },
+		{ code: 'uk', name: 'Українська', flag: '🇺🇦' },
+		{ code: 'zh', name: '中文', flag: '🇨🇳' }
 	];
 
 	function changeLanguage(languageCode: string) {
@@ -34,7 +42,7 @@
 		<Button
 			variant="secondary"
 			size="sm"
-			class="cursor-pointer  flex items-center bg-white"
+			class="cursor-pointer  flex items-center "
 			aria-label="Change language"
 		>
 			<Languages class="mr-2 h-4 w-4" />
@@ -43,7 +51,7 @@
 		</Button>
 	</DropdownMenuTrigger>
 
-	<DropdownMenuContent align="end">
+	<DropdownMenuContent class="grid grid-cols-2 gap-2 w-auto min-w-[200px] p-2" align="start">
 		{#each languages as language}
 			<DropdownMenuItem
 				onclick={() => changeLanguage(language.code)}
